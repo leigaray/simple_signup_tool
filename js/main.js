@@ -2,11 +2,8 @@ $(function() {
     // Initialize Nice Select
     $('select').niceSelect();
 
-    const countrySelect = $("select[name='language']"); // Country dropdown (Nice Select)
-    const stateSelect = $("#stateSelect"); // State dropdown
-
-    // Function to fetch and parse CSV
-    function loadCSV() {
+    // Function to fetch and populate states dynamically based on selected country
+    function setupCountryStateDropdown(countrySelector, stateSelector) {
         fetch("https://leigaray.github.io/simple_signup_tool/data/countries_states.csv")
             .then(response => response.text())
             .then(data => {
@@ -36,23 +33,24 @@ $(function() {
                 console.log("Country to States Map:", countryStateMap); // Debug mapping
 
                 // Listen for country selection change
-                countrySelect.on("change", function() {
+                $(countrySelector).on("change", function() {
                     const selectedCountry = $(this).val();
-                    stateSelect.html('<option value="">Select a State/Province</option>'); // Reset
+                    $(stateSelector).html('<option value="">Select a State/Province</option>'); // Reset
 
                     if (countryStateMap[selectedCountry]) {
                         countryStateMap[selectedCountry].forEach(state => {
-                            stateSelect.append(`<option value="${state}">${state}</option>`);
+                            $(stateSelector).append(`<option value="${state}">${state}</option>`);
                         });
 
                         // Refresh Nice Select for state dropdown
-                        stateSelect.niceSelect("update");
+                        $(stateSelector).niceSelect("update");
                     }
                 });
             })
             .catch(error => console.error("Error loading CSV:", error));
     }
 
-    // Load CSV data
-    loadCSV();
+    // ✅ Set up both country → state dropdowns
+    setupCountryStateDropdown("select[name='native_country']", "#stateNativeSelect");
+    setupCountryStateDropdown("select[name='current_country']", "#stateCurrentSelect");
 });
