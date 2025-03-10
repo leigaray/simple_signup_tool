@@ -7,7 +7,7 @@ $(function() {
 
     // Function to fetch and parse CSV
     function loadCSV() {
-        fetch("./data/countries_states.csv")
+        fetch("data/countries_states.csv")
             .then(response => response.text())
             .then(data => {
                 const rows = data.split("\n").map(row => row.trim()).filter(row => row);
