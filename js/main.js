@@ -1,5 +1,5 @@
 $(function() {
-    // Initialize Nice Select
+    // Initialize Nice Select for all select elements
     $('select').niceSelect();
 
     // Function to fetch and populate states dynamically based on selected country
@@ -9,8 +9,7 @@ $(function() {
             .then(data => {
                 const rows = data.split("\n").map(row => row.trim()).filter(row => row);
 
-                // ✅ Debugging: Print first 5 rows to console
-                console.log("First 5 rows of CSV:", rows.slice(0, 5));
+                console.log("First 5 rows of CSV:", rows.slice(0, 5)); // Debugging
 
                 const countryStateMap = {};
 
@@ -21,7 +20,7 @@ $(function() {
 
                     if (!country || !state) {
                         console.warn("Skipping malformed row:", row);
-                        return; // Skip if there's a parsing issue
+                        return;
                     }
 
                     if (!countryStateMap[country]) {
@@ -35,16 +34,16 @@ $(function() {
                 // Listen for country selection change
                 $(countrySelector).on("change", function() {
                     const selectedCountry = $(this).val();
-                    $(stateSelector).html('<option value="">Select a State/Province</option>'); // Reset
+                    $(stateSelector).html('<option value="">Select a State/Province</option>'); // Reset options
 
                     if (countryStateMap[selectedCountry]) {
                         countryStateMap[selectedCountry].forEach(state => {
                             $(stateSelector).append(`<option value="${state}">${state}</option>`);
                         });
-
-                        // Refresh Nice Select for state dropdown
-                        $(stateSelector).niceSelect("update");
                     }
+
+                    // ✅ Refresh Nice Select
+                    $(stateSelector).niceSelect("update");
                 });
             })
             .catch(error => console.error("Error loading CSV:", error));
