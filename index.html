@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -5,72 +6,42 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Voice Actor Portal</title>
 
-        <!-- CSS only -->
+        <!-- CSS Dependencies -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-icons.css">
         <link rel="stylesheet" href="css/nice-select.css">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/style.css">
 
+        <!-- JS Dependencies -->
         <script src="js/jquery-3.6.1.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/nice-select.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/multi-step.js"></script>
         <script src="js/utils.js"></script>
         <script src="js/dropdowns.js"></script>
         <script src="js/checkboxes.js"></script>
         <script src="js/main.js"></script>
 
+        <!-- Analytics -->
         <script defer data-domain="leigaray.github.io" src="https://analytics.tiiny.site/js/plausible.js"></script>
 
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap"
-              rel="stylesheet">
-        <style id="ar11b861e8a5style">
-            .ar11b861e8a5hidden {
-                position: absolute !important;
-                opacity: 0 !important;
-                pointer-events: none !important
-            }
-        </style>
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap" rel="stylesheet">
     </head>
 
     <body>
-
         <main class="bforum-main">
-        <!-- Left Area -->
-        <div class="left-sidebar-area" style="background-image: url('img/left-bg3.jpg');">
-            <div class="left-sidebar-area-full">
+            <!-- Sidebar -->
+            <div id="sidebar"></div>
 
-                <div class="content">
-                    <hr>
-
-                    <h2>Voice Actor Audition Portal</h2>
-                    <p>We're seeking professional voice talent to contribute to our AI voice synthesis research. Your
-                        recordings will help advance our natural language technology. Selected voice actors will be
-                        offered paid opportunities for future recording sessions.</p>
-                </div>
-            </div>
-        </div>
-        <!-- Right Full Section -->
-        <div class="right-wrapper-area">
-            <div class="right-wrapper-area-full">
-                <h1 class="mainheader">Voice Actor Audition Portal</h1>
-                <div class="steps clearfix">
-                    <ul class="tablist bforum-form__progress">
-                        <li class="bforum-form__progress-btn js-active current">
-                            <span>1</span>
-                        </li>
-                        <li class="bforum-form__progress-btn">
-                            <span>2</span>
-                        </li>
-                        <li class="bforum-form__progress-btn">
-                            <span>3</span>
-                        </li>
-                        <li class="bforum-form__progress-btn">
-                            <span>4</span>
-                        </li>
-                        <li class="bforum-form__progress-btn last">
-                            <span>5</span>
-                        </li>
-                    </ul>
-                </div>
+            <!-- Right Full Section -->
+            <div class="right-wrapper-area">
+                <div class="right-wrapper-area-full">
+                    <!-- Header -->
+                    <div id="header"></div>
 
 
                 <form class="multisteps-form__form" action="#" id="wizard" method="POST" style="height: 730px;">
@@ -679,16 +650,7 @@
                                 </div>
                             </div>
 
-                            <div class="actions">
-                                <ul>
-                                    <li><span class="js-btn-prev" title="BACK"><i class="bi bi-arrow-left"></i> BACK
-                                            </span>
-                                    </li>
-                                    <li>
-                                        <button type="submit" title="NEXT">SUBMIT <i class="bi bi-arrow-right"></i></button>
-                                    </li>
-                                </ul>
-                            </div>
+                            <div id="footer"></div>
                         </div>
                     </div>
                 </form>
@@ -709,6 +671,13 @@
         <script src="js/multi-step.js"></script>
         <script src="js/main.js"></script>
 
+        <script>
+            $(document).ready(function() {
+                $('#sidebar').load('components/sidebar.html');
+                $('#header').load('components/header.html');
+                $('#footer').load('components/footer.html');
+            });
+        </script>
 
     </body>
 </html>
