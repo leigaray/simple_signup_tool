@@ -124,9 +124,12 @@ $(function () {
 
                 data.split("\n").slice(1).forEach(row => {
                     row = row.trim(); // Remove extra spaces
-                    console.log(`🔄 Processing row: ${row}`);
+                    if (!row) return; // Skip empty rows
 
-                    const match = row.match(/^"?(.*?)"?,?"?(.*?)"?$/); // Looser match for more robustness
+                    console.log(`🔄 Processing row: "${row}"`);
+
+                    // Handle cases with or without quotes
+                    const match = row.match(/^"?(\d+)"?,?"?(.*?)"?$/);
                     if (match) {
                         const id = match[1].trim();
                         const label = match[2].trim();
@@ -139,7 +142,7 @@ $(function () {
 
                         container.append(checkboxHtml);
                     } else {
-                        console.warn(`⚠️ Skipping malformed row: ${row}`);
+                        console.warn(`⚠️ Skipping malformed row: "${row}"`);
                     }
                 });
 
@@ -147,6 +150,8 @@ $(function () {
             })
             .catch(error => console.error(`❌ Error loading ${csvUrl}:`, error));
     }
+
+
 
     /**
      * ✅ Mutually Exclusive Selection (Checkboxes)
@@ -165,23 +170,23 @@ $(function () {
      * ✅ Initialize All Functions on Document Ready
      */
     $(document).ready(function() {
+        console.log("🚀 Initializing checkboxes from CSV...");
+        // ✅ Load Ethnicity and Experience Checkboxes
+        loadCheckboxesFromCSV("#ethnicityContainer", "data/ethnicities.csv", "ethnicity");
+        loadCheckboxesFromCSV("#experienceContainer", "data/recording_experience.csv", "experience");
+        console.log("✅ Checkboxes loaded.");
+    });
+
+    $(document).ready(function() {
         updateLastModified();
         populateYearDropdown("#birthYearSelect", 1990, 2006, true);
         toggleVisibility("otherReferralContainer", "referralSource", "Other");
         toggleVisibility("otherLanguageContainer", "languageSelect", "Other");
-
-
-
-        loadCheckboxesFromCSV("#ethnicityContainer", "data/ethnicities.csv", "ethnicity");
-        loadCheckboxesFromCSV("#experienceContainer", "data/recording_experience.csv", "experience");
-
-
         setupCountryStateDropdown("select[name='native_country']", "#stateNativeSelect");
         setupCountryStateDropdown("select[name='current_country']", "#stateCurrentSelect");
         populateDropdownFromCSV("select[name='education']", "data/education.csv");
         populateDropdownFromCSV("select[name='referral_source']", "data/referrals.csv");
         populateDropdownFromCSV("select[name='language']", "data/languages.csv");
-
         enforceExclusiveSelection("#ethnicityContainer", "ethnicity-8");
         console.log("✅ All functions initialized.");
     });
