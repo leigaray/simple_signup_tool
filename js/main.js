@@ -4,6 +4,22 @@ $(function () {
     // ✅ Initialize Nice Select for all dropdowns
     $('select').niceSelect();
 
+    // ✅ Function to enforce a mutually exclusive selection rule within a group
+    function enforceExclusiveSelection(groupSelector, exclusiveOptionId) {
+        $(document).on("change", `${groupSelector} input[type="checkbox"], ${groupSelector} input[type="radio"]`, function () {
+            const isExclusive = $(this).attr("id") === exclusiveOptionId;
+
+            if (isExclusive && $(this).is(":checked")) {
+                // ✅ Uncheck all other checkboxes/radio buttons in the group
+                $(`${groupSelector} input[type="checkbox"], ${groupSelector} input[type="radio"]`).not(this).prop("checked", false);
+            } else if (!isExclusive) {
+                // ✅ Uncheck the exclusive option if any other option is selected
+                $(`#${exclusiveOptionId}`).prop("checked", false);
+            }
+        });
+    }
+
+
     // ✅ Function to populate the birth year dropdown dynamically
     function populateYearDropdown(selector, startYear, endYear, descending = true) {
         console.log(`🚀 Populating ${selector} from ${startYear} to ${endYear}, Descending: ${descending}`);
@@ -244,6 +260,10 @@ $(function () {
 
         // ✅ Load Languages
         loadLanguages();
+
+        // ✅ Enforce exclusive selection for "Other" in Ethnicity
+        enforceExclusiveSelection("#ethnicityContainer", "ethnicity-8"); // Adjust ID if needed
+
 
         // ✅ Call function to show/hide "Other" field for referral source
         toggleVisibility("otherReferralContainer", "referralSource", "Other");
