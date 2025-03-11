@@ -34,12 +34,28 @@ $(function () {
      * ✅ Show/Hide Elements Based on Selection
      */
     function toggleVisibility(targetId, triggerElementId, triggerValue) {
-        $(document).on("change", `#${triggerElementId}`, function () {
-            const selectedValue = $(this).val();
+        $(document).on("change", `#${triggerElementId}, .nice-select`, function () {
+            const selectedValue = $(`#${triggerElementId}`).val(); // Get value from the actual <select> element
             console.log(`🔄 ${triggerElementId} changed to:`, selectedValue);
-            $(`#${targetId}`).toggle(selectedValue === triggerValue);
-        }).trigger("change");
+
+            if (selectedValue === triggerValue) {
+                $(`#${targetId}`).fadeIn(); // ✅ Show if selected value matches
+            } else {
+                $(`#${targetId}`).fadeOut(); // ✅ Hide otherwise
+            }
+        });
+
+        // ✅ Ensure visibility is correct on page load
+        setTimeout(() => {
+            const selectedValue = $(`#${triggerElementId}`).val();
+            if (selectedValue === triggerValue) {
+                $(`#${targetId}`).show();
+            } else {
+                $(`#${targetId}`).hide();
+            }
+        }, 500);
     }
+
 
     /**
      * ✅ Populate Dropdowns from CSV
@@ -131,6 +147,7 @@ $(function () {
         populateYearDropdown("#birthYearSelect", 1990, 2006, true);
         toggleVisibility("otherReferralContainer", "referralSource", "Other");
         toggleVisibility("otherLanguageContainer", "languageSelect", "Other");
+
         loadCheckboxesFromCSV("#ethnicityContainer", "data/ethnicities.csv");
         loadCheckboxesFromCSV("#experienceContainer", "data/recording_experience.csv");
         enforceExclusiveSelection("#ethnicityContainer", "ethnicity-8");
