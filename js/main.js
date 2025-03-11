@@ -24,7 +24,7 @@ $(function () {
         const dropdown = $(selector);
         if (!dropdown.length) return console.error(`❌ Dropdown ${selector} not found!`);
         dropdown.empty().append('<option value="" selected="selected">Select Year</option>');
-        const years = Array.from({ length: endYear - startYear + 1 }, (_, i) => startYear + i);
+        const years = Array.from({length: endYear - startYear + 1}, (_, i) => startYear + i);
         if (descending) years.reverse();
         years.forEach(year => dropdown.append(`<option value="${year}">${year}</option>`));
         setTimeout(() => dropdown.niceSelect("destroy").niceSelect(), 500);
@@ -91,7 +91,7 @@ $(function () {
                     if (!countryStateMap[country]) countryStateMap[country] = [];
                     countryStateMap[country].push(state);
                 });
-                $(countrySelector).on("change", function() {
+                $(countrySelector).on("change", function () {
                     const selectedCountry = $(this).val();
                     const stateDropdown = $(stateSelector);
                     stateDropdown.empty().append('<option value="">Select State/Province/Region</option>');
@@ -104,6 +104,9 @@ $(function () {
             .catch(error => console.error("❌ Error loading CSV:", error));
     }
 
+    /**
+     * ✅ Load Checkboxes from CSV (Ethnicity, Experience)
+     */
     /**
      * ✅ Load Checkboxes from CSV (Ethnicity, Experience)
      */
@@ -129,16 +132,21 @@ $(function () {
                     console.log(`🔄 Processing row: "${row}"`);
 
                     // Handle cases with or without quotes
-                    const match = row.match(/^"?(\d+)"?,?"?(.*?)"?$/);
+                    const match = row.match(/^\s*"?(\d+)"?\s*,\s*"?(.*?)"?\s*$/);
                     if (match) {
                         const id = match[1].trim();
                         const label = match[2].trim();
 
+                        if (!id || !label) {
+                            console.warn(`⚠️ Skipping invalid row: "${row}"`);
+                            return;
+                        }
+
                         const checkboxHtml = `
-                            <div class="single-checkbox">
-                                <input type="checkbox" id="${prefix}-${id}" name="${prefix}[]" value="${label}" class="checkbox">
-                                <label for="${prefix}-${id}">${label}</label>
-                            </div>`;
+                        <div class="single-checkbox">
+                            <input type="checkbox" id="${prefix}-${id}" name="${prefix}[]" value="${label}" class="checkbox">
+                            <label for="${prefix}-${id}">${label}</label>
+                        </div>`;
 
                         container.append(checkboxHtml);
                     } else {
@@ -150,7 +158,6 @@ $(function () {
             })
             .catch(error => console.error(`❌ Error loading ${csvUrl}:`, error));
     }
-
 
 
     /**
@@ -169,7 +176,7 @@ $(function () {
     /**
      * ✅ Initialize All Functions on Document Ready
      */
-    $(document).ready(function() {
+    $(document).ready(function () {
         console.log("🚀 Initializing checkboxes from CSV...");
         // ✅ Load Ethnicity and Experience Checkboxes
         loadCheckboxesFromCSV("#ethnicityContainer", "data/ethnicities.csv", "ethnicity");
@@ -177,7 +184,7 @@ $(function () {
         console.log("✅ Checkboxes loaded.");
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         updateLastModified();
         populateYearDropdown("#birthYearSelect", 1990, 2006, true);
         toggleVisibility("otherReferralContainer", "referralSource", "Other");
