@@ -285,11 +285,11 @@ $(function () {
         });
     }
 
-    // ✅ Call function for "Other" option in referral source dropdown
-    toggleVisibility("otherReferralContainer", "referralSource", "Other");
 
 
     populateYearDropdown("select[name='birth_year']", 1940, 2006, true);
+    // ✅ Call function for "Other" option in referral source dropdown
+    toggleVisibility("otherReferralContainer", "referralSource", "Other");
 
     populateDropdownFromCSV("select[name='education']", "data/education.csv");
     populateDropdownFromCSV("select[name='referral_source']", "data/referrals.csv");
