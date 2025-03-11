@@ -148,8 +148,12 @@ $(function () {
             .catch(error => console.error("❌ Error loading CSV:", error));
     }
 
-    // ✅ Populate the birth year dropdown **ONLY ONCE**
-    populateYearDropdown("#birthYearSelect", 1940, 2006, true);
+    $(document).ready(function() {
+        console.log("🚀 Document Ready - Initializing Birth Year Dropdown");
+        populateYearDropdown("#birthYearSelect", 1940, 2006, true);
+    });
+
+
 
     // ✅ Call function to show/hide "Other" field for referral source
     toggleVisibility("otherReferralContainer", "referralSource", "Other");
