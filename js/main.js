@@ -107,21 +107,43 @@ $(function () {
     /**
      * ✅ Load Checkboxes from CSV (Ethnicity, Experience)
      */
-    function loadCheckboxesFromCSV(containerSelector, csvUrl) {
+    function loadCheckboxesFromCSV(containerSelector, csvUrl, prefix) {
+        console.log(`🚀 Fetching checkboxes from ${csvUrl} for ${containerSelector}...`);
+
         fetch(csvUrl)
             .then(response => response.text())
             .then(data => {
-                const container = $(containerSelector).empty();
+                console.log(`✅ CSV Loaded: First 5 rows of ${csvUrl}:`, data.split("\n").slice(0, 5));
+
+                const container = $(containerSelector);
+                if (!container.length) {
+                    console.error(`❌ Container ${containerSelector} not found!`);
+                    return;
+                }
+                container.empty(); // Clear previous content
+
                 data.split("\n").slice(1).forEach(row => {
-                    const match = row.match(/^"(\d+)","(.*?)"$/);
+                    row = row.trim(); // Remove extra spaces
+                    console.log(`🔄 Processing row: ${row}`);
+
+                    const match = row.match(/^"?(.*?)"?,?"?(.*?)"?$/); // Looser match for more robustness
                     if (match) {
-                        container.append(`
+                        const id = match[1].trim();
+                        const label = match[2].trim();
+
+                        const checkboxHtml = `
                             <div class="single-checkbox">
-                                <input type="checkbox" id="${containerSelector.replace('#', '')}-${match[1]}" name="${containerSelector.replace('#', '')}[]" value="${match[2]}" class="checkbox">
-                                <label for="${containerSelector.replace('#', '')}-${match[1]}">${match[2]}</label>
-                            </div>`);
+                                <input type="checkbox" id="${prefix}-${id}" name="${prefix}[]" value="${label}" class="checkbox">
+                                <label for="${prefix}-${id}">${label}</label>
+                            </div>`;
+
+                        container.append(checkboxHtml);
+                    } else {
+                        console.warn(`⚠️ Skipping malformed row: ${row}`);
                     }
                 });
+
+                console.log(`✅ Finished populating ${containerSelector}.`);
             })
             .catch(error => console.error(`❌ Error loading ${csvUrl}:`, error));
     }
@@ -148,8 +170,11 @@ $(function () {
         toggleVisibility("otherReferralContainer", "referralSource", "Other");
         toggleVisibility("otherLanguageContainer", "languageSelect", "Other");
 
-        loadCheckboxesFromCSV("#ethnicityContainer", "data/ethnicities.csv");
-        loadCheckboxesFromCSV("#experienceContainer", "data/recording_experience.csv");
+
+
+        loadCheckboxesFromCSV("#ethnicityContainer", "data/ethnicities.csv", "ethnicity");
+        loadCheckboxesFromCSV("#experienceContainer", "data/recording_experience.csv", "experience");
+
 
         setupCountryStateDropdown("select[name='native_country']", "#stateNativeSelect");
         setupCountryStateDropdown("select[name='current_country']", "#stateCurrentSelect");
