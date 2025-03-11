@@ -108,43 +108,50 @@ $(function () {
     }
 
     function loadLanguages() {
-    fetch("https://leigaray.github.io/simple_signup_tool/data/languages.csv")
-        .then(response => response.text())
-        .then(data => {
-            console.log("✅ Languages script is running");
-            const rows = data.split("\n").map(row => row.trim()).filter(row => row);
-            console.log("📌 First 5 rows of Languages CSV:", rows.slice(0, 5));
+        console.log("🚀 loadLanguages() started");
 
-            const languageSelect = $("select[name='language']");
-            languageSelect.empty(); // Clear existing options
+        fetch("https://leigaray.github.io/simple_signup_tool/data/languages.csv")
+            .then(response => response.text())
+            .then(data => {
+                console.log("✅ Languages CSV loaded successfully");
 
-            // Add default placeholder option
-            languageSelect.append('<option value="" selected="selected">Select a Language</option>');
+                const rows = data.split("\n").map(row => row.trim()).filter(row => row);
+                console.log("📌 First 5 rows of Languages CSV:", rows.slice(0, 5));
 
-            rows.slice(1).forEach(row => {
-                console.log("Processing row:", row); // Log each row
+                const languageSelect = $("select[name='language']");
+                languageSelect.empty(); // Clear existing options
 
-                // Correctly handle CSV with quoted values
-                const match = row.match(/^"(\d+)","(.*?)"$/);
-                if (match) {
-                    const id = match[1];
-                    const language = match[2];
-                    console.log(`✅ Adding Language: ${language} (ID: ${id})`);
+                // Add default placeholder option
+                languageSelect.append('<option value="" selected="selected">Select a Language</option>');
 
-                    languageSelect.append(`<option value="${language}">${language}</option>`);
-                } else {
-                    console.warn("⚠️ Skipping malformed row:", row);
-                }
-            });
+                let addedCount = 0;
 
-            console.log("✅ Final Language Dropdown HTML:", languageSelect.html());
+                rows.slice(1).forEach(row => {
+                    console.log("Processing row:", row); // Log each row
 
-            // ✅ Refresh Nice Select
-            languageSelect.niceSelect("destroy");
-            languageSelect.niceSelect();
-        })
-        .catch(error => console.error("❌ Error loading Languages CSV:", error));
-}
+                    const match = row.match(/^"(\d+)","(.*?)"$/);
+                    if (match) {
+                        const id = match[1];
+                        const language = match[2];
+                        console.log(`✅ Adding Language: ${language} (ID: ${id})`);
+
+                        languageSelect.append(`<option value="${language}">${language}</option>`);
+                        addedCount++;
+                    } else {
+                        console.warn("⚠️ Skipping malformed row:", row);
+                    }
+                });
+
+                console.log(`✅ Successfully added ${addedCount} languages.`);
+
+                // ✅ Ensure that the dropdown updates visually
+                languageSelect.niceSelect("destroy");
+                languageSelect.niceSelect();
+
+                console.log("✅ Final Language Dropdown HTML:", languageSelect.html());
+            })
+            .catch(error => console.error("❌ Error loading Languages CSV:", error));
+    }
 
     // ✅ Load Languages
     loadLanguages();
