@@ -238,19 +238,15 @@ $(function () {
             .catch(error => console.error(`❌ Error loading ${csvUrl}:`, error));
     }
 
-    function populateYearDropdown(selector, startYear, endYear, descending = true) {
-        console.log(`🚀 Populating ${selector} from ${startYear} to ${endYear}, Descending: ${descending}`);
-
+    function populateYearDropdown(selector, startYear, endYear, descending = false) {
         const dropdown = $(selector);
-        if (!dropdown.length) {
-            console.error(`❌ Dropdown ${selector} not found!`);
-            return;
-        }
-
         dropdown.empty(); // Clear existing options
-        dropdown.append('<option value="" selected="selected">Select Year</option>');
 
-        const years = [];
+        // ✅ Add default empty option
+        dropdown.append('<option value="" selected="selected"></option>');
+
+        // ✅ Generate years in the correct order
+        let years = [];
         for (let year = startYear; year <= endYear; year++) {
             years.push(year);
         }
@@ -259,19 +255,17 @@ $(function () {
             years.reverse();
         }
 
+        // ✅ Populate the dropdown
         years.forEach(year => {
             dropdown.append(`<option value="${year}">${year}</option>`);
         });
 
-        // ✅ Refresh Nice Select UI (if applicable)
-        if (dropdown.hasClass('nice-select')) {
-            dropdown.niceSelect("destroy");
-            dropdown.niceSelect();
-        }
+        // ✅ Refresh the Nice Select UI
+        dropdown.niceSelect("destroy");
+        dropdown.niceSelect();
 
-        console.log(`✅ ${selector} updated successfully.`);
+        console.log(`✅ ${selector} populated with years from ${startYear} to ${endYear}, sorted ${descending ? "descending" : "ascending"}.`);
     }
-
 
 
     populateYearDropdown("select[name='birth_year']", 1940, 2006, true);
