@@ -151,20 +151,20 @@ $(function () {
     $(document).ready(function() {
         console.log("🚀 Document Ready - Initializing Birth Year Dropdown");
         populateYearDropdown("#birthYearSelect", 1940, 2006, true);
+
+        // ✅ Call function to show/hide "Other" field for referral source
+        toggleVisibility("otherReferralContainer", "referralSource", "Other");
+
+        // ✅ Load dropdowns from CSV files
+        populateDropdownFromCSV("select[name='education']", "data/education.csv");
+        populateDropdownFromCSV("select[name='referral_source']", "data/referrals.csv");
+
+        // ✅ Load Country-State relationship
+        setupCountryStateDropdown("select[name='native_country']", "#stateNativeSelect");
+        setupCountryStateDropdown("select[name='current_country']", "#stateCurrentSelect");
+
+        console.log("✅ All functions initialized.");
+
     });
 
-
-
-    // ✅ Call function to show/hide "Other" field for referral source
-    toggleVisibility("otherReferralContainer", "referralSource", "Other");
-
-    // ✅ Load dropdowns from CSV files
-    populateDropdownFromCSV("select[name='education']", "data/education.csv");
-    populateDropdownFromCSV("select[name='referral_source']", "data/referrals.csv");
-
-    // ✅ Load Country-State relationship
-    setupCountryStateDropdown("select[name='native_country']", "#stateNativeSelect");
-    setupCountryStateDropdown("select[name='current_country']", "#stateCurrentSelect");
-
-    console.log("✅ All functions initialized.");
 });
