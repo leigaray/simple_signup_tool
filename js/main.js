@@ -153,6 +153,52 @@ $(function () {
             .catch(error => console.error("❌ Error loading Languages CSV:", error));
     }
 
+    function loadRecordingExperience() {
+        fetch("https://leigaray.github.io/simple_signup_tool/data/recording_experience.csv")
+            .then(response => response.text())
+            .then(data => {
+                console.log("✅ Recording Experience script is running");
+                const rows = data.split("\n").map(row => row.trim()).filter(row => row);
+                console.log("📌 First 5 rows of Recording Experience CSV:", rows.slice(0, 5));
+
+                const experienceContainer = $("#experienceContainer");
+                experienceContainer.empty(); // Clear existing options
+
+                rows.slice(1).forEach(row => {
+                    console.log("Processing row:", row); // Log each row
+
+                    const match = row.match(/^"(\d+)","(.*?)"$/);
+                    if (match) {
+                        const id = match[1];
+                        const experience = match[2];
+
+                        // ✅ Create checkbox dynamically
+                        const checkboxHtml = `
+                            <div class="col-sm-6 col-md-6">
+                                <div class="single-checkbox">
+                                    <input type="checkbox" id="experience-${id}" name="experience[]" value="${experience}" class="experience-checkbox">
+                                    <label for="experience-${id}">${experience}</label>
+                                </div>
+                            </div>`;
+
+                        experienceContainer.append(checkboxHtml);
+                    } else {
+                        console.warn("⚠️ Skipping malformed row:", row);
+                    }
+                });
+
+                // ✅ Attach exclusive selection behavior for "No Experience"
+                enforceExclusiveSelection("#experienceContainer", "experience-0");
+
+                console.log("✅ Final Experience Container:", experienceContainer.html());
+            })
+            .catch(error => console.error("❌ Error loading Recording Experience CSV:", error));
+    }
+
+    // ✅ Load Recording Experience when the page is ready
+    loadRecordingExperience();
+
+
     // ✅ Load Languages
     loadLanguages();
     // ✅ Load both ethnicity & state data
