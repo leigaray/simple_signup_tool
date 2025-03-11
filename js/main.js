@@ -107,6 +107,41 @@ $(function () {
         });
     }
 
+    function loadLanguages() {
+        fetch("https://leigaray.github.io/simple_signup_tool/data/languages.csv")
+            .then(response => response.text())
+            .then(data => {
+                console.log("✅ Languages script is running");
+                const rows = data.split("\n").map(row => row.trim()).filter(row => row);
+                console.log("First 5 rows of Languages CSV:", rows.slice(0, 5));
+
+                const languageSelect = $("select[name='language']");
+                languageSelect.empty(); // Clear existing options
+
+                // Add default placeholder option
+                languageSelect.append('<option value="" selected="selected">Select a Language</option>');
+
+                rows.slice(1).forEach(row => {
+                    const match = row.match(/^"?(.*?)"?,?"?(.*?)"?$/);
+                    if (match) {
+                        const language = match[2] || match[1]; // Handles optional ID column
+                        languageSelect.append(`<option value="${language}">${language}</option>`);
+                    } else {
+                        console.warn("⚠️ Skipping malformed row:", row);
+                    }
+                });
+
+                // ✅ Refresh Nice Select
+                languageSelect.niceSelect("destroy");
+                languageSelect.niceSelect();
+
+                console.log("✅ Final Language Dropdown:", languageSelect.html());
+            })
+            .catch(error => console.error("❌ Error loading Languages CSV:", error));
+    }
+
+    // ✅ Load Languages
+    loadLanguages();
     // ✅ Load both ethnicity & state data
     loadEthnicities();
     setupCountryStateDropdown("select[name='native_country']", "#stateNativeSelect");
