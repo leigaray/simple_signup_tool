@@ -54,7 +54,7 @@ $(function () {
             .catch(error => console.error("❌ Error loading CSV:", error));
     }
 
-    // ✅ Function to dynamically load ethnicity checkboxes
+    // ✅ Function to load Ethnicities dynamically from CSV
     function loadEthnicities() {
         fetch("https://leigaray.github.io/simple_signup_tool/data/ethnicities.csv")
             .then(response => response.text())
@@ -64,7 +64,7 @@ $(function () {
                 console.log("First 5 rows of Ethnicities CSV:", rows.slice(0, 5));
 
                 const ethnicityContainer = $("#ethnicityContainer");
-                ethnicityContainer.empty(); // Clear existing content
+                ethnicityContainer.empty();
 
                 rows.slice(1).forEach(row => {
                     const match = row.match(/^"(\d+)","(.*)"$/);
@@ -84,17 +84,27 @@ $(function () {
                     }
                 });
 
-                // ✅ Handle "Prefer Not to Answer" logic
-                $(".ethnicity-checkbox").on("change", function() {
-                    if ($(this).val() === "Prefer Not to Answer" && $(this).is(":checked")) {
-                        $(".ethnicity-checkbox").prop("checked", false); // Uncheck all
-                        $(this).prop("checked", true); // Keep "Prefer Not to Answer" checked
-                    }
-                });
+                // ✅ Attach exclusive selection behavior for Ethnicity group
+                enforceExclusiveSelection("#ethnicityContainer", "ethnicity-8"); // Adjust ID if needed
 
                 console.log("✅ Final Ethnicity Container:", ethnicityContainer.html());
             })
             .catch(error => console.error("❌ Error loading Ethnicities CSV:", error));
+    }
+
+    // ✅ Generic function to enforce a mutually exclusive selection rule within a group
+    function enforceExclusiveSelection(groupSelector, exclusiveOptionId) {
+        $(document).on("change", `${groupSelector} input[type="checkbox"], ${groupSelector} input[type="radio"]`, function () {
+            const isExclusive = $(this).attr("id") === exclusiveOptionId;
+
+            if (isExclusive && $(this).is(":checked")) {
+                // ✅ Uncheck all other checkboxes/radio buttons in the group
+                $(`${groupSelector} input[type="checkbox"], ${groupSelector} input[type="radio"]`).not(this).prop("checked", false);
+            } else if (!isExclusive) {
+                // ✅ Uncheck the exclusive option if any other option is selected
+                $(`#${exclusiveOptionId}`).prop("checked", false);
+            }
+        });
     }
 
     // ✅ Load both ethnicity & state data
