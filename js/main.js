@@ -58,6 +58,54 @@ $(function() {
             .catch(error => console.error("❌ Error loading CSV:", error));
     }
 
+    function loadEthnicities() {
+        fetch("https://leigaray.github.io/simple_signup_tool/data/ethnicities.csv")
+            .then(response => response.text())
+            .then(data => {
+                const rows = data.split("\n").map(row => row.trim()).filter(row => row);
+                console.log("✅ First 5 rows of Ethnicities CSV:", rows.slice(0, 5));
+
+                const ethnicityContainer = $("#ethnicityContainer"); // Ensure this exists in HTML
+                ethnicityContainer.empty(); // Clear previous content
+
+                rows.slice(1).forEach(row => {
+                    const match = row.match(/^"(\d+)","(.*)"$/);
+                    if (match) {
+                        const id = match[1];
+                        const ethnicity = match[2];
+                        const isPreferNotToAnswer = (ethnicity === "Prefer Not to Answer");
+
+                        // Create checkbox HTML dynamically
+                        const checkboxHtml = `
+                            <div class="single-checkbox">
+                                <input type="checkbox" id="ethnicity-${id}" name="ethnicity[]" value="${ethnicity}"
+                                    class="ethnicity-checkbox" ${isPreferNotToAnswer ? 'data-prefer="true"' : ''}>
+                                <label for="ethnicity-${id}">${ethnicity}</label>
+                            </div>`;
+
+                        ethnicityContainer.append(checkboxHtml);
+                    } else {
+                        console.warn("⚠️ Skipping malformed row:", row);
+                    }
+                });
+
+                // ✅ Handle the "Prefer Not to Answer" logic
+                $(".ethnicity-checkbox").on("change", function () {
+                    const isPrefer = $(this).data("prefer"); // Is this the "Prefer Not to Answer" option?
+                    if (isPrefer) {
+                        // ✅ If "Prefer Not to Answer" is selected, uncheck all others
+                        $(".ethnicity-checkbox").not(this).prop("checked", false).prop("disabled", this.checked);
+                    } else {
+                        // ✅ If another option is selected, uncheck "Prefer Not to Answer"
+                        $(".ethnicity-checkbox[data-prefer='true']").prop("checked", false);
+                    }
+                });
+            })
+            .catch(error => console.error("❌ Error loading Ethnicities CSV:", error));
+    }
+
+    // ✅ Load ethnicities dynamically
+    loadEthnicities();
     // ✅ Set up both country → state dropdowns
     setupCountryStateDropdown("select[name='native_country']", "#stateNativeSelect");
     setupCountryStateDropdown("select[name='current_country']", "#stateCurrentSelect");

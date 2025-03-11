@@ -321,66 +321,16 @@
                                 </div>
                             </div>
 
+                            <!-- ✅ Dynamically generated checkboxes will be inserted here -->
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <div class="single-input-radio">
-                                        <div class="row">
-                                            <div class="col-sm-12 col-md-12">
-                                                <div class="single-radio">
-                                                    <input type="radio" id="webdesign" name="services" value="Web Design">
-                                                    <label for="webdesign">American Indian or Alaska Native</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-md-12">
-                                                <div class="single-radio">
-                                                    <input type="radio" id="development" name="services"
-                                                           value="Web Development">
-                                                    <label for="development">Black or African American</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-md-12">
-                                                <div class="single-radio">
-                                                    <input type="radio" id="appdesign" name="services" value="App Design">
-                                                    <label for="appdesign">Hispanic, Latino, or Spanish</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-md-12">
-                                                <div class="single-radio">
-                                                    <input type="radio" id="appdevelopment" name="services"
-                                                           value="App Development">
-                                                    <label for="appdevelopment">Middle Eastern or North African</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-md-12">
-                                                <div class="single-radio">
-                                                    <input type="radio" id="Graphics" name="services"
-                                                           value="Graphics Design ">
-                                                    <label for="Graphics">Native Hawaiian or Other Pacific
-                                                        Islander</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-md-12">
-                                                <div class="single-radio">
-                                                    <input type="radio" id="UIUX" name="services" value="UI/UX Design ">
-                                                    <label for="UIUX">Other</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-md-12">
-                                                <div class="single-radio">
-                                                    <input type="radio" id="SEO" name="services" value="SEO ">
-                                                    <label for="SEO">Prefer Not to Answer</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-md-12">
-                                                <div class="single-radio">
-                                                    <input type="radio" id="white" name="services" value="SEO ">
-                                                    <label for="SEO">White</label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="single-input-checkbox">
+                                        <p class="toplabel">Select all that apply:</p>
+                                        <div id="ethnicityContainer"></div> <!-- ✅ JavaScript will populate checkboxes here -->
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="from-header-info">
                                     <strong>What is your primary language?</strong>
@@ -389,46 +339,27 @@
 
                             <div class="row">
                                 <div class="col-lg-12">
-
                                     <div class="single-select">
-                                        <select name="language" style="display: none;">
+                                        <select name="language" class="form-control required">
                                             <option value="" selected="selected"></option>
                                             <option value="U.S. English">U.S. English</option>
-                                            <option value="U.K. English (British Only)">UK
-                                                English (received pronunciation only)
-                                            </option>
-                                            <option value="Latin America Spanish">Latin America Spanish
-                                            </option>
+                                            <option value="U.K. English (British Only)">UK English (received pronunciation only)</option>
+                                            <option value="Latin America Spanish">Latin America Spanish</option>
                                             <option value="Spain Spanish">Spain Spanish</option>
                                             <option value="Other">Other</option>
                                         </select>
-                                        <div class="nice-select" tabindex="0"><span class="current"></span>
-                                            <ul class="list">
-                                                <li data-value="" class="option selected"></li>
-                                                <li data-value="U.S. English" class="option">U.S. English</li>
-                                                <li data-value="U.K. English (British Only)" class="option">UK
-                                                    English (received pronunciation only)
-                                                </li>
-                                                <li data-value="Latin America Spanish" class="option">Latin America Spanish
-                                                </li>
-                                                <li data-value="Spain Spanish" class="option">Spain Spanish</li>
-                                                <li data-value="Other" class="option">Other</li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-
                             <div class="actions">
                                 <ul>
-                                    <li><span class="js-btn-prev" title="BACK"><i class="bi bi-arrow-left"></i> BACK
-                                            </span></li>
-                                    <li><span class="js-btn-next" title="NEXT">NEXT <i class="bi bi-arrow-right"></i></span>
-                                    </li>
+                                    <li><span class="js-btn-prev" title="BACK"><i class="bi bi-arrow-left"></i> BACK </span></li>
+                                    <li><span class="js-btn-next" title="NEXT">NEXT <i class="bi bi-arrow-right"></i></span></li>
                                 </ul>
                             </div>
                         </div>
+
                         <div class="multisteps-form__panel" data-animation="slideHorz">
 
                             <div class="row">
