@@ -130,7 +130,7 @@ $(function () {
         updateLastModified();
         populateYearDropdown("#birthYearSelect", 1990, 2006, true);
         toggleVisibility("otherReferralContainer", "referralSource", "Other");
-        toggleVisibility("otherLanguageContainer", "language", "Other");
+        toggleVisibility("otherLanguageContainer", "languageSelect", "Other");
         loadCheckboxesFromCSV("#ethnicityContainer", "data/ethnicities.csv");
         loadCheckboxesFromCSV("#experienceContainer", "data/recording_experience.csv");
         enforceExclusiveSelection("#ethnicityContainer", "ethnicity-8");
