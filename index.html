@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -6,713 +5,710 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Voice Actor Portal</title>
 
-        <!-- CSS Dependencies -->
+        <!-- CSS only -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-icons.css">
         <link rel="stylesheet" href="css/nice-select.css">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/style.css">
 
-        <!-- JS Dependencies (JQuery First) -->
         <script src="js/jquery-3.6.1.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/nice-select.js"></script>
-        <script src="js/jquery.validate.min.js"></script>
         <script src="js/utils.js"></script>
         <script src="js/dropdowns.js"></script>
         <script src="js/checkboxes.js"></script>
         <script src="js/main.js"></script>
 
-        <!-- Analytics -->
         <script defer data-domain="leigaray.github.io" src="https://analytics.tiiny.site/js/plausible.js"></script>
 
-        <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap"
+              rel="stylesheet">
+        <style id="ar11b861e8a5style">
+            .ar11b861e8a5hidden {
+                position: absolute !important;
+                opacity: 0 !important;
+                pointer-events: none !important
+            }
+        </style>
     </head>
 
     <body>
+
         <main class="bforum-main">
-            <!-- Sidebar -->
-            <div id="sidebar"></div>
+        <!-- Left Area -->
+        <div class="left-sidebar-area" style="background-image: url('img/left-bg3.jpg');">
+            <div class="left-sidebar-area-full">
 
-            <!-- Right Full Section -->
-            <div class="right-wrapper-area">
-                <div class="right-wrapper-area-full">
-                    <!-- Header -->
-                    <div id="header"></div>
+                <div class="content">
+                    <hr>
 
-                    <!-- Multi-Step Form -->
-                    <form class="multisteps-form__form" action="#" id="wizard" method="POST" style="height: 730px;">
-                        <div class="form-area-full position-relative">
-                            <div class="multisteps-form__panel js-active" data-animation="slideHorz">
-                                <div class="row">
-                                    <div class="from-header-info">
-                                        <strong>Personal Information</strong>
+                    <h2>Voice Actor Audition Portal</h2>
+                    <p>We're seeking professional voice talent to contribute to our AI voice synthesis research. Your
+                        recordings will help advance our natural language technology. Selected voice actors will be
+                        offered paid opportunities for future recording sessions.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Right Full Section -->
+        <div class="right-wrapper-area">
+            <div class="right-wrapper-area-full">
+                <h1 class="mainheader">Voice Actor Audition Portal</h1>
+                <div class="steps clearfix">
+                    <ul class="tablist bforum-form__progress">
+                        <li class="bforum-form__progress-btn js-active current">
+                            <span>1</span>
+                        </li>
+                        <li class="bforum-form__progress-btn">
+                            <span>2</span>
+                        </li>
+                        <li class="bforum-form__progress-btn">
+                            <span>3</span>
+                        </li>
+                        <li class="bforum-form__progress-btn">
+                            <span>4</span>
+                        </li>
+                        <li class="bforum-form__progress-btn last">
+                            <span>5</span>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <form class="multisteps-form__form" action="#" id="wizard" method="POST" style="height: 730px;">
+                    <div class="form-area-full position-relative">
+                        <div class="multisteps-form__panel js-active" data-animation="slideHorz">
+                            <div class="row">
+                                <div class="from-header-info">
+                                    <strong>Personal Information</strong>
+                                </div>
+                            </div>
+                            <div class="row">
+
+
+                                <div class="col-sm-6">
+                                    <div class="single-input">
+                                        <input type="text" name="first_name" class="form-control required" minlength="2"
+                                               placeholder="First Name *" required="">
                                     </div>
                                 </div>
-                                <div class="row">
-
-
-                                    <div class="col-sm-6">
-                                        <div class="single-input">
-                                            <input type="text" name="first_name" class="form-control required" minlength="2"
-                                                   placeholder="First Name *" required="">
-                                        </div>
+                                <div class="col-sm-6">
+                                    <div class="single-input">
+                                        <input type="text" name="last_name" class="form-control required" minlength="3"
+                                               placeholder="Last Name *" required="">
                                     </div>
-                                    <div class="col-sm-6">
-                                        <div class="single-input">
-                                            <input type="text" name="last_name" class="form-control required" minlength="3"
-                                                   placeholder="Last Name *" required="">
-                                        </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="single-input">
+                                        <input type="email" name="email" class="form-control required"
+                                               placeholder="Email Address *" required="">
                                     </div>
-                                    <div class="col-sm-12">
-                                        <div class="single-input">
-                                            <input type="email" name="email" class="form-control required"
-                                                   placeholder="Email Address *" required="">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="single-input-radio">
-                                            <span>Gender</span>
-                                            <div class="row">
-                                                <div class="col-sm-6 col-md-4">
-                                                    <div class="single-radio">
-                                                        <input type="radio" id="male" name="gender" value="male">
-                                                        <label for="male">Male</label>
-                                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="single-input-radio">
+                                        <span>Gender</span>
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-4">
+                                                <div class="single-radio">
+                                                    <input type="radio" id="male" name="gender" value="male">
+                                                    <label for="male">Male</label>
                                                 </div>
-                                                <div class="col-sm-6 col-md-4">
-                                                    <div class="single-radio">
-                                                        <input type="radio" id="female" name="gender" value="Female">
-                                                        <label for="female">Female</label>
-                                                    </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                <div class="single-radio">
+                                                    <input type="radio" id="female" name="gender" value="Female">
+                                                    <label for="female">Female</label>
                                                 </div>
-                                                <div class="col-sm-6 col-md-4">
-                                                    <div class="single-radio">
-                                                        <input type="radio" id="custom" name="gender" value="Custom">
-                                                        <label for="custom">Non-Binary</label>
-                                                    </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-4">
+                                                <div class="single-radio">
+                                                    <input type="radio" id="custom" name="gender" value="Custom">
+                                                    <label for="custom">Non-Binary</label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-12">
-                                        <div class="single-select">
-                                            <label>Birth Year</label>
-                                            <select name="birth_year" style="display: none;">
-                                                <option value="" selected="selected"></option>
-                                                <option value="2006">2006</option>
-                                                <option value="2005">2005</option>
-                                                <option value="2004">2004</option>
-                                                <option value="2003">2003</option>
-                                                <option value="2002">2002</option>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="single-select">
+                                        <label>Birth Year</label>
+                                        <select name="birth_year" style="display: none;">
+                                            <option value="" selected="selected"></option>
+                                            <option value="2006">2006</option>
+                                            <option value="2005">2005</option>
+                                            <option value="2004">2004</option>
+                                            <option value="2003">2003</option>
+                                            <option value="2002">2002</option>
 
-                                            </select>
-                                            <div class="nice-select" tabindex="0"><span class="current"></span>
-                                                <ul class="list">
-                                                    <li data-value="" class="option selected"></li>
-                                                    <li data-value="2006" class="option">2006</li>
-                                                    <li data-value="2005" class="option">2005</li>
-                                                    <li data-value="2004" class="option">2004</li>
-                                                    <li data-value="2003" class="option">2003</li>
-                                                    <li data-value="2002" class="option">2002</li>
-                                                </ul>
-                                            </div>
+                                        </select>
+                                        <div class="nice-select" tabindex="0"><span class="current"></span>
+                                            <ul class="list">
+                                                <li data-value="" class="option selected"></li>
+                                                <li data-value="2006" class="option">2006</li>
+                                                <li data-value="2005" class="option">2005</li>
+                                                <li data-value="2004" class="option">2004</li>
+                                                <li data-value="2003" class="option">2003</li>
+                                                <li data-value="2002" class="option">2002</li>
+                                            </ul>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="col-sm-12">
+                                <div class="col-sm-12">
 
-                                        <div class="single-select">
-                                            <label>Education</label>
-                                            <select name="education" style="display: none;">
-                                                <option value="" selected="selected"></option>
-                                                <option value="Middle School">Middle School</option>
-                                                <option value="High School">High School</option>
-                                                <option value="Undergraduate (Bachelors)">Undergraduate
+                                    <div class="single-select">
+                                        <label>Education</label>
+                                        <select name="education" style="display: none;">
+                                            <option value="" selected="selected"></option>
+                                            <option value="Middle School">Middle School</option>
+                                            <option value="High School">High School</option>
+                                            <option value="Undergraduate (Bachelors)">Undergraduate
+                                                (Bachelors)
+                                            </option>
+                                            <option value="Graduate (Masters+)">Graduate (Masters+)
+                                            </option>
+                                            <option value="Unknown">Unknown</option>
+                                        </select>
+                                        <div class="nice-select" tabindex="0"><span class="current"></span>
+                                            <ul class="list">
+                                                <li data-value="" class="option selected"></li>
+                                                <li data-value="Middle School" class="option">Middle School</li>
+                                                <li data-value="High School" class="option">High School</li>
+                                                <li data-value="Undergraduate (Bachelors)" class="option">Undergraduate
                                                     (Bachelors)
-                                                </option>
-                                                <option value="Graduate (Masters+)">Graduate (Masters+)
-                                                </option>
-                                                <option value="Unknown">Unknown</option>
-                                            </select>
-                                            <div class="nice-select" tabindex="0"><span class="current"></span>
-                                                <ul class="list">
-                                                    <li data-value="" class="option selected"></li>
-                                                    <li data-value="Middle School" class="option">Middle School</li>
-                                                    <li data-value="High School" class="option">High School</li>
-                                                    <li data-value="Undergraduate (Bachelors)" class="option">Undergraduate
-                                                        (Bachelors)
-                                                    </li>
-                                                    <li data-value="Graduate (Masters+)" class="option">Graduate (Masters+)
-                                                    </li>
-                                                    <li data-value="Unknown" class="option">Unknown</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <div class="single-select">
-                                            <label>How did you hear about this opportunity?</label>
-                                            <select name="reference" style="display: none;">
-                                                <option value="" selected="selected"></option>
-                                                <option value="Fiverr">Fiverr</option>
-                                                <option value="LinkedIn">LinkedIn</option>
-                                                <option value="Reddit">Reddit</option>
-                                                <option value="Upwork">Upwork</option>
-                                                <option value="Google">Google</option>
-                                                <option value="DOS MONKEYS">DOS MONKEYS</option>
-                                                <option value="Other">Other</option>
-                                            </select>
-                                            <div class="nice-select" tabindex="0"><span class="current"></span>
-                                                <ul class="list">
-                                                    <li data-value="" class="option selected"></li>
-                                                    <li data-value="Fiverr" class="option">Fiverr</li>
-                                                    <li data-value="LinkedIn" class="option">LinkedIn</li>
-                                                    <li data-value="Reddit" class="option">Reddit</li>
-                                                    <li data-value="Upwork" class="option">Upwork</li>
-                                                    <li data-value="Google" class="option">Google</li>
-                                                    <li data-value="DOS MONKEYS" class="option">DOS MONKEYS</li>
-                                                    <li data-value="Other" class="option">Other</li>
-                                                </ul>
-                                            </div>
+                                                </li>
+                                                <li data-value="Graduate (Masters+)" class="option">Graduate (Masters+)
+                                                </li>
+                                                <li data-value="Unknown" class="option">Unknown</li>
+                                            </ul>
                                         </div>
                                     </div>
 
 
                                 </div>
-                                <div class="actions">
-                                    <ul>
-                                        <li class="disable" aria-disabled="true"><span class="js-btn-next" title="back"><i
-                                                class="bi bi-arrow-left"></i> Back </span></li>
-                                        <li><span class="js-btn-next" title="NEXT">NEXT <i class="bi bi-arrow-right"></i></span>
-                                        </li>
-                                    </ul>
+
+                                <div class="col-sm-12">
+                                    <div class="single-select">
+                                        <label>How did you hear about this opportunity?</label>
+                                        <select name="reference" style="display: none;">
+                                            <option value="" selected="selected"></option>
+                                            <option value="Fiverr">Fiverr</option>
+                                            <option value="LinkedIn">LinkedIn</option>
+                                            <option value="Reddit">Reddit</option>
+                                            <option value="Upwork">Upwork</option>
+                                            <option value="Google">Google</option>
+                                            <option value="DOS MONKEYS">DOS MONKEYS</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                        <div class="nice-select" tabindex="0"><span class="current"></span>
+                                            <ul class="list">
+                                                <li data-value="" class="option selected"></li>
+                                                <li data-value="Fiverr" class="option">Fiverr</li>
+                                                <li data-value="LinkedIn" class="option">LinkedIn</li>
+                                                <li data-value="Reddit" class="option">Reddit</li>
+                                                <li data-value="Upwork" class="option">Upwork</li>
+                                                <li data-value="Google" class="option">Google</li>
+                                                <li data-value="DOS MONKEYS" class="option">DOS MONKEYS</li>
+                                                <li data-value="Other" class="option">Other</li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
+
+
                             </div>
-
-                            <div class="multisteps-form__panel" data-animation="slideHorz">
-                                <div class="row">
-                                    <div class="from-header-info">
-                                        <span class="maintitle">Tell us where you were born and live today:</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-
-                                    <div class="col-sm-12">
-                                        <div class="single-select">
-                                            <label>Native Country</label>
-                                            <select name="native_country" class="form-control required">
-
-                                                <option value="" selected="selected"></option>
-                                                <option value="Colombia">Colombia</option>
-                                                <option value="Mexico">Mexico</option>
-                                                <option value="Spain">Spain</option>
-                                                <option value="United Kingdom">United Kingdom</option>
-                                                <option value="United States">United States</option>
-                                            </select>
-                                            <div class="nice-select" tabindex="0"><span class="current"></span>
-                                                <ul class="list">
-                                                    <li data-value="" class="option selected"></li>
-                                                    <li data-value="Colombia" class="option">Colombia</li>
-                                                    <li data-value="Mexico" class="option">Mexico</li>
-                                                    <li data-value="Spain" class="option">Spain</li>
-                                                    <li data-value="United Kingdom" class="option">United Kingdom</li>
-                                                    <li data-value="United States" class="option">United States</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-
-                                        <div class="single-select">
-                                            <label> Native State/Province/Region</label>
-                                            <select id="stateNativeSelect" class="form-control required">
-                                                <option value="">Select a State/Province</option>
-                                            </select>
-
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-sm-12">
-                                        <div class="single-select">
-                                            <label>Current Country</label>
-                                            <select name="current_country" class="form-control required">
-                                                <option value="" selected="selected"></option>
-                                                <option value="Colombia">Colombia</option>
-                                                <option value="Mexico">Mexico</option>
-                                                <option value="Spain">Spain</option>
-                                                <option value="United Kingdom">United Kingdom</option>
-                                                <option value="United States">United States</option>
-                                            </select>
-                                            <div class="nice-select" tabindex="0"><span class="current"></span>
-                                                <ul class="list">
-                                                    <li data-value="" class="option selected"></li>
-                                                    <li data-value="Colombia" class="option">Colombia</li>
-                                                    <li data-value="Mexico" class="option">Mexico</li>
-                                                    <li data-value="Spain" class="option">Spain</li>
-                                                    <li data-value="United Kingdom" class="option">United Kingdom</li>
-                                                    <li data-value="United States" class="option">United States</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-
-                                        <div class="single-select">
-                                            <label> Current State/Province/Region</label>
-                                            <select id="stateCurrentSelect" class="form-control required">
-                                                <option value="">Select a State/Province</option>
-                                            </select>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="actions">
-                                    <ul>
-                                        <li><span class="js-btn-prev" title="BACK"><i class="bi bi-arrow-left"></i> BACK
-                                                </span></li>
-                                        <li><span class="js-btn-next" title="NEXT">NEXT <i class="bi bi-arrow-right"></i></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="multisteps-form__panel" data-animation="slideHorz">
-                                <div class="row">
-                                    <div class="from-header-info">
-                                        <span class="maintitle">Tell us about your ethnicity and language spoken:</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="from-header-info">
-                                        <strong>What is your ethnicity?</strong>
-                                    </div>
-                                </div>
-
-                                <!-- ✅ Dynamically generated checkboxes will be inserted here -->
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="single-input-checkbox">
-                                            <p class="toplabel">Select all that apply:</p>
-                                            <div id="ethnicityContainer"></div> <!-- ✅ JavaScript will populate checkboxes here -->
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="single-select">
-                                            <label>What is your primary language?</label>
-                                            <select name="language" class="form-control required">
-                                                <option value="" selected="selected">Loading languages...</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="actions">
-                                    <ul>
-                                        <li><span class="js-btn-prev" title="BACK"><i class="bi bi-arrow-left"></i> BACK </span></li>
-                                        <li><span class="js-btn-next" title="NEXT">NEXT <i class="bi bi-arrow-right"></i></span></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="multisteps-form__panel" data-animation="slideHorz">
-
-                                <div class="row">
-                                    <div class="from-header-info">
-                                        <span class="maintitle">Tell us your voice acting experience:</span>
-                                    </div>
-                                </div>
-                                <div class="row">
-
-                                    <div class="col-lg-12">
-                                        <div class="single-select">
-                                            <label>Do you have a home recording studio? </label>
-                                            <select name="recording_studio" style="display: none;">
-                                                <option value="" selected="selected"></option>
-                                                <option value="No">No</option>
-                                                <option value="Yes">Yes</option>
-                                            </select>
-                                            <div class="nice-select" tabindex="0"><span class="current"></span>
-                                                <ul class="list">
-                                                    <li data-value="" class="option selected"></li>
-                                                    <li data-value="No" class="option">No</li>
-                                                    <li data-value="Yes" class="option">Yes</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="single-select">
-                                            <label>Do you have a professional recording microphone? </label>
-                                            <select name="recording_microphone" style="display: none;">
-                                                <option value="" selected="selected"></option>
-                                                <option value="No">No</option>
-                                                <option value="Yes">Yes</option>
-                                            </select>
-                                            <div class="nice-select" tabindex="0"><span class="current"></span>
-                                                <ul class="list">
-                                                    <li data-value="" class="option selected"></li>
-                                                    <li data-value="No" class="option">No</li>
-                                                    <li data-value="Yes" class="option">Yes</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12">
-                                        <div class="single-input-checkbox">
-                                            <p class="toplabel">
-                                                Select all options below that apply to your previous experience as a voice actor:
-                                            </p>
-                                            <div class="row" id="experienceContainer">
-                                                <!-- ✅ JavaScript will populate checkboxes dynamically here -->
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="actions">
-                                    <ul>
-                                        <li><span class="js-btn-prev" title="BACK"><i class="bi bi-arrow-left"></i> BACK
-                                                </span></li>
-                                        <li><span class="js-btn-next" title="NEXT">NEXT <i class="bi bi-arrow-right"></i></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="multisteps-form__panel" data-animation="slideHorz">
-                                <div class="row">
-                                    <div class="from-header-info">
-                                        <span class="maintitle">Please provide the following voice samples:</span>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="scener">
-                                        <div class="col-lg-12">
-                                            <div class="single-select">
-                                                <div><label>SCENE 1: SOAP OPERA</label></div>
-                                                <strong>The setting:</strong> Imagine you are in a soap opera and very angry.
-                                                Speak the following line
-                                                with melodramatic fury, emphasize "THREE" hours.
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="recordingline" style=" ">
-
-
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <label class="recline">Record the following line: </label>
-                                                    <div class="actorline">"Where were you, Isabelle? <strong>THREE</strong>
-                                                        hours late, with that
-                                                        lipstick smeared like a cheap romance novel!"
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <hr>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    //code for recording goes here
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <hr>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-
-                                    <div class="scener">
-                                        <div class="col-lg-12">
-                                            <div class="single-select">
-                                                <div><label>SCENE 2: AUDIO DESCRIPTION FOR A COMEDY</label></div>
-                                                <strong>The setting:</strong> Speak with refined distaste but underlying
-                                                amusement.
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="recordingline" style=" ">
-
-
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <label class="recline">Record the following line: </label>
-                                                    <div class="actorline">"The protagonist's hygiene habits, or lack thereof,
-                                                        are so appalling that
-                                                        even the flies are repulsed. Yet, it's oddly endearing."
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <hr>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    //code for recording goes here
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <hr>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-
-                                    <div class="scener">
-                                        <div class="col-lg-12">
-                                            <div class="single-select">
-                                                <div><label>SCENE 3: HORROR</label></div>
-                                                <strong>The setting:</strong> Deliver in trembling whisper, voice cracking with
-                                                terror.
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="recordingline" style=" ">
-
-
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <label class="recline">Record the following line: </label>
-                                                    <div class="actorline">"The crucifix in my hand feels like my only
-                                                        protection. But even that seems
-                                                        powerless against the evil within.
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <hr>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    //code for recording goes here
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <hr>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-
-                                    <div class="scener">
-                                        <div class="col-lg-12">
-                                            <div class="single-select">
-                                                <div><label>SCENE 4: DRAMA VOICEOVER</label></div>
-                                                <strong>The setting:</strong> Speak with deep emotion, slow pace, soft voice
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="recordingline" style=" ">
-
-
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <label class="recline">Record the following line: </label>
-                                                    <div class="actorline">"Emily and John's story is a testament to the
-                                                        enduring impact of a single
-                                                        decision and the lifelong journey of healing that follows."
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <hr>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    //code for recording goes here
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <hr>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-
-                                    <div class="scener">
-                                        <div class="col-lg-12">
-                                            <div class="single-select">
-                                                <div><label>SCENE 5: CHILDREN'S CONTENT - ADVENTURE</label></div>
-                                                <strong>The setting:</strong> Perform in a warm, encouraging tone
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="recordingline" style=" ">
-
-
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <label class="recline">Record the following line: </label>
-                                                    <div class="actorline">"We can do this if we work together; our friends have
-                                                        always been there for
-                                                        us."
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <hr>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    //code for recording goes here
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-
-
+                            <div class="actions">
+                                <ul>
+                                    <li class="disable" aria-disabled="true"><span class="js-btn-next" title="back"><i
+                                            class="bi bi-arrow-left"></i> Back </span></li>
+                                    <li><span class="js-btn-next" title="NEXT">NEXT <i class="bi bi-arrow-right"></i></span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    </form>
 
-                    <div id="footer"></div>
+                        <div class="multisteps-form__panel" data-animation="slideHorz">
+                            <div class="row">
+                                <div class="from-header-info">
+                                    <span class="maintitle">Tell us where you were born and live today:</span>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-sm-12">
+                                    <div class="single-select">
+                                        <label>Native Country</label>
+                                        <select name="native_country" class="form-control required">
+
+                                            <option value="" selected="selected"></option>
+                                            <option value="Colombia">Colombia</option>
+                                            <option value="Mexico">Mexico</option>
+                                            <option value="Spain">Spain</option>
+                                            <option value="United Kingdom">United Kingdom</option>
+                                            <option value="United States">United States</option>
+                                        </select>
+                                        <div class="nice-select" tabindex="0"><span class="current"></span>
+                                            <ul class="list">
+                                                <li data-value="" class="option selected"></li>
+                                                <li data-value="Colombia" class="option">Colombia</li>
+                                                <li data-value="Mexico" class="option">Mexico</li>
+                                                <li data-value="Spain" class="option">Spain</li>
+                                                <li data-value="United Kingdom" class="option">United Kingdom</li>
+                                                <li data-value="United States" class="option">United States</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+
+                                    <div class="single-select">
+                                        <label> Native State/Province/Region</label>
+                                        <select id="stateNativeSelect" class="form-control required">
+                                            <option value="">Select a State/Province</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-12">
+                                    <div class="single-select">
+                                        <label>Current Country</label>
+                                        <select name="current_country" class="form-control required">
+                                            <option value="" selected="selected"></option>
+                                            <option value="Colombia">Colombia</option>
+                                            <option value="Mexico">Mexico</option>
+                                            <option value="Spain">Spain</option>
+                                            <option value="United Kingdom">United Kingdom</option>
+                                            <option value="United States">United States</option>
+                                        </select>
+                                        <div class="nice-select" tabindex="0"><span class="current"></span>
+                                            <ul class="list">
+                                                <li data-value="" class="option selected"></li>
+                                                <li data-value="Colombia" class="option">Colombia</li>
+                                                <li data-value="Mexico" class="option">Mexico</li>
+                                                <li data-value="Spain" class="option">Spain</li>
+                                                <li data-value="United Kingdom" class="option">United Kingdom</li>
+                                                <li data-value="United States" class="option">United States</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+
+                                    <div class="single-select">
+                                        <label> Current State/Province/Region</label>
+                                        <select id="stateCurrentSelect" class="form-control required">
+                                            <option value="">Select a State/Province</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="actions">
+                                <ul>
+                                    <li><span class="js-btn-prev" title="BACK"><i class="bi bi-arrow-left"></i> BACK
+                                            </span></li>
+                                    <li><span class="js-btn-next" title="NEXT">NEXT <i class="bi bi-arrow-right"></i></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="multisteps-form__panel" data-animation="slideHorz">
+                            <div class="row">
+                                <div class="from-header-info">
+                                    <span class="maintitle">Tell us about your ethnicity and language spoken:</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="from-header-info">
+                                    <strong>What is your ethnicity?</strong>
+                                </div>
+                            </div>
+
+                            <!-- ✅ Dynamically generated checkboxes will be inserted here -->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="single-input-checkbox">
+                                        <p class="toplabel">Select all that apply:</p>
+                                        <div id="ethnicityContainer"></div> <!-- ✅ JavaScript will populate checkboxes here -->
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="single-select">
+                                        <label>What is your primary language?</label>
+                                        <select name="language" class="form-control required">
+                                            <option value="" selected="selected">Loading languages...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="actions">
+                                <ul>
+                                    <li><span class="js-btn-prev" title="BACK"><i class="bi bi-arrow-left"></i> BACK </span></li>
+                                    <li><span class="js-btn-next" title="NEXT">NEXT <i class="bi bi-arrow-right"></i></span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="multisteps-form__panel" data-animation="slideHorz">
+
+                            <div class="row">
+                                <div class="from-header-info">
+                                    <span class="maintitle">Tell us your voice acting experience:</span>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-lg-12">
+                                    <div class="single-select">
+                                        <label>Do you have a home recording studio? </label>
+                                        <select name="recording_studio" style="display: none;">
+                                            <option value="" selected="selected"></option>
+                                            <option value="No">No</option>
+                                            <option value="Yes">Yes</option>
+                                        </select>
+                                        <div class="nice-select" tabindex="0"><span class="current"></span>
+                                            <ul class="list">
+                                                <li data-value="" class="option selected"></li>
+                                                <li data-value="No" class="option">No</li>
+                                                <li data-value="Yes" class="option">Yes</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="single-select">
+                                        <label>Do you have a professional recording microphone? </label>
+                                        <select name="recording_microphone" style="display: none;">
+                                            <option value="" selected="selected"></option>
+                                            <option value="No">No</option>
+                                            <option value="Yes">Yes</option>
+                                        </select>
+                                        <div class="nice-select" tabindex="0"><span class="current"></span>
+                                            <ul class="list">
+                                                <li data-value="" class="option selected"></li>
+                                                <li data-value="No" class="option">No</li>
+                                                <li data-value="Yes" class="option">Yes</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="single-input-checkbox">
+                                        <p class="toplabel">
+                                            Select all options below that apply to your previous experience as a voice actor:
+                                        </p>
+                                        <div class="row" id="experienceContainer">
+                                            <!-- ✅ JavaScript will populate checkboxes dynamically here -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="actions">
+                                <ul>
+                                    <li><span class="js-btn-prev" title="BACK"><i class="bi bi-arrow-left"></i> BACK
+                                            </span></li>
+                                    <li><span class="js-btn-next" title="NEXT">NEXT <i class="bi bi-arrow-right"></i></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="multisteps-form__panel" data-animation="slideHorz">
+                            <div class="row">
+                                <div class="from-header-info">
+                                    <span class="maintitle">Please provide the following voice samples:</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="scener">
+                                    <div class="col-lg-12">
+                                        <div class="single-select">
+                                            <div><label>SCENE 1: SOAP OPERA</label></div>
+                                            <strong>The setting:</strong> Imagine you are in a soap opera and very angry.
+                                            Speak the following line
+                                            with melodramatic fury, emphasize "THREE" hours.
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="recordingline" style=" ">
+
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <label class="recline">Record the following line: </label>
+                                                <div class="actorline">"Where were you, Isabelle? <strong>THREE</strong>
+                                                    hours late, with that
+                                                    lipstick smeared like a cheap romance novel!"
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <hr>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                //code for recording goes here
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <hr>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+
+                                <div class="scener">
+                                    <div class="col-lg-12">
+                                        <div class="single-select">
+                                            <div><label>SCENE 2: AUDIO DESCRIPTION FOR A COMEDY</label></div>
+                                            <strong>The setting:</strong> Speak with refined distaste but underlying
+                                            amusement.
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="recordingline" style=" ">
+
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <label class="recline">Record the following line: </label>
+                                                <div class="actorline">"The protagonist's hygiene habits, or lack thereof,
+                                                    are so appalling that
+                                                    even the flies are repulsed. Yet, it's oddly endearing."
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <hr>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                //code for recording goes here
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <hr>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+
+                                <div class="scener">
+                                    <div class="col-lg-12">
+                                        <div class="single-select">
+                                            <div><label>SCENE 3: HORROR</label></div>
+                                            <strong>The setting:</strong> Deliver in trembling whisper, voice cracking with
+                                            terror.
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="recordingline" style=" ">
+
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <label class="recline">Record the following line: </label>
+                                                <div class="actorline">"The crucifix in my hand feels like my only
+                                                    protection. But even that seems
+                                                    powerless against the evil within.
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <hr>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                //code for recording goes here
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <hr>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+
+                                <div class="scener">
+                                    <div class="col-lg-12">
+                                        <div class="single-select">
+                                            <div><label>SCENE 4: DRAMA VOICEOVER</label></div>
+                                            <strong>The setting:</strong> Speak with deep emotion, slow pace, soft voice
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="recordingline" style=" ">
+
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <label class="recline">Record the following line: </label>
+                                                <div class="actorline">"Emily and John's story is a testament to the
+                                                    enduring impact of a single
+                                                    decision and the lifelong journey of healing that follows."
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <hr>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                //code for recording goes here
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <hr>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+
+                                <div class="scener">
+                                    <div class="col-lg-12">
+                                        <div class="single-select">
+                                            <div><label>SCENE 5: CHILDREN'S CONTENT - ADVENTURE</label></div>
+                                            <strong>The setting:</strong> Perform in a warm, encouraging tone
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="recordingline" style=" ">
+
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <label class="recline">Record the following line: </label>
+                                                <div class="actorline">"We can do this if we work together; our friends have
+                                                    always been there for
+                                                    us."
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <hr>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                //code for recording goes here
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <div class="actions">
+                                <ul>
+                                    <li><span class="js-btn-prev" title="BACK"><i class="bi bi-arrow-left"></i> BACK
+                                            </span>
+                                    </li>
+                                    <li>
+                                        <button type="submit" title="NEXT">SUBMIT <i class="bi bi-arrow-right"></i></button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
     </main>
 
-        <!-- Load Components & Fix Buttons -->
-        <script>
-            $(document).ready(function () {
-                console.log("📌 Loading components...");
 
-                // Load Sidebar, Header, Footer
-                $('#sidebar').load('components/sidebar.html', function() {
-                    console.log("✅ Sidebar loaded");
-                });
+        <!-- JS -->
+        <script src="js/jquery-3.6.1.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <div class="shadowDomRoot"
+             style="display: none; position: fixed; bottom: 24px; right: 24px; z-index: 2147483647;"></div>
+        <script src="js/nice-select.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/multi-step.js"></script>
+        <script src="js/main.js"></script>
 
-                $('#header').load('components/header.html', function() {
-                    console.log("✅ Header loaded");
-                });
-
-                $('#footer').load('components/footer.html', function() {
-                    console.log("✅ Footer loaded");
-
-                    // Reattach Next & Back Button Listeners AFTER Footer Loads
-                    setTimeout(function () {
-                        console.log("🔄 Attaching event listeners to Next and Back buttons");
-
-                        $(document).on("click", ".js-btn-next", function() {
-                            console.log("✅ Next button clicked!");
-                            var currentStep = $('.multisteps-form__panel.js-active');
-                            var nextStep = currentStep.next('.multisteps-form__panel');
-
-                            if (nextStep.length) {
-                                currentStep.removeClass('js-active');
-                                nextStep.addClass('js-active');
-                                console.log("➡️ Moved to next step");
-                            } else {
-                                console.warn("🚨 No next step found!");
-                            }
-                        });
-
-                        $(document).on("click", ".js-btn-prev", function() {
-                            console.log("⬅️ Back button clicked!");
-                            var currentStep = $('.multisteps-form__panel.js-active');
-                            var prevStep = currentStep.prev('.multisteps-form__panel');
-
-                            if (prevStep.length) {
-                                currentStep.removeClass('js-active');
-                                prevStep.addClass('js-active');
-                                console.log("⬅️ Moved to previous step");
-                            } else {
-                                console.warn("🚨 No previous step found!");
-                            }
-                        });
-
-                    }, 1000);
-                });
-            });
-        </script>
 
     </body>
 </html>
