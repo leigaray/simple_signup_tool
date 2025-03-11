@@ -154,10 +154,17 @@ $(function () {
     }
 
     function loadRecordingExperience() {
+        console.log("🚀 loadRecordingExperience() started"); // Log function start
+
         fetch("https://leigaray.github.io/simple_signup_tool/data/recording_experience.csv")
-            .then(response => response.text())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.text();
+            })
             .then(data => {
-                console.log("✅ Recording Experience script is running");
+                console.log("✅ Recording Experience CSV loaded successfully");
                 const rows = data.split("\n").map(row => row.trim()).filter(row => row);
                 console.log("📌 First 5 rows of Recording Experience CSV:", rows.slice(0, 5));
 
