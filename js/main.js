@@ -4,6 +4,21 @@ $(function () {
     // ✅ Initialize Nice Select for all dropdowns
     $('select').niceSelect();
 
+    function updateLastModified() {
+        const lastModified = new Date(document.lastModified);
+        const formattedDate = lastModified.toLocaleString("en-US", {
+            weekday: "short",
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+
+        $("#lastUpdated").text(`Last updated: ${formattedDate}`);
+    }
+
     // ✅ Function to enforce a mutually exclusive selection rule within a group
     function enforceExclusiveSelection(groupSelector, exclusiveOptionId) {
         $(document).on("change", `${groupSelector} input[type="checkbox"], ${groupSelector} input[type="radio"]`, function () {
@@ -76,6 +91,7 @@ $(function () {
             $(`#${targetId}`).hide();
         }
     }
+
 
     // ✅ Function to populate a dropdown from a CSV file
     function populateDropdownFromCSV(selector, csvUrl) {
@@ -253,6 +269,9 @@ $(function () {
 
     $(document).ready(function() {
         console.log("🚀 Document Ready - Initializing Birth Year Dropdown");
+
+        updateLastModified();
+
         populateYearDropdown("#birthYearSelect", 1990, 2006, true);
 
         // ✅ Load Ethnicities
@@ -268,7 +287,7 @@ $(function () {
         // ✅ Call function to show/hide "Other" field for referral source
         toggleVisibility("otherReferralContainer", "referralSource", "Other");
         //toggleVisibility("otherEthnicityContainer", "ethnicityContainer", "Other");
-        toggleVisibility("otherLanguageContainer", "language", "Other");
+        toggleVisibility("otherLanguageContainer", "languageSelect", "Other");
 
         // ✅ Load dropdowns from CSV files
         populateDropdownFromCSV("select[name='education']", "data/education.csv");
