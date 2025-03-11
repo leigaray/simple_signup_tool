@@ -35,15 +35,7 @@
     <body>
         <main class="bforum-main">
             <!-- Sidebar -->
-            <div class="left-sidebar-area" style="background-image: url('img/left-bg3.jpg');">
-                <div class="left-sidebar-area-full">
-                    <div class="content">
-                        <hr>
-                        <h2>Voice Actor Audition Portal</h2>
-                        <p>We're seeking professional voice talent to contribute to our AI voice synthesis research. Your recordings will help advance our natural language technology. Selected voice actors will be offered paid opportunities for future recording sessions.</p>
-                    </div>
-                </div>
-            </div>
+            <div id="sidebar"></div>
 
             <!-- Main Content -->
             <div class="right-wrapper-area">
@@ -63,9 +55,10 @@
             </div>
         </main>
 
+        <!-- Load Components -->
         <script>
-            // Dynamically load form steps and navigation
             $(document).ready(function() {
+                $('#sidebar').load('components/sidebar.html');
                 $('#steps-nav').load('components/steps.html');
                 $('#form-sections').load('components/form_sections.html');
             });
