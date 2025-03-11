@@ -35,20 +35,22 @@ $(function () {
                     const selectedCountry = $(this).val();
                     console.log(`🌍 Country Selected: ${selectedCountry}`);
 
-                    $(stateSelector).html('<option value="">Select a State/Province</option>');
+                    const stateDropdown = $(stateSelector);
+                    stateDropdown.html('<option value="">Select State/Province/Region</option>');
 
-                    if (countryStateMap[selectedCountry]) {
+                    if (selectedCountry && countryStateMap[selectedCountry]) {
                         countryStateMap[selectedCountry].forEach(state => {
-                            $(stateSelector).append(`<option value="${state}">${state}</option>`);
+                            stateDropdown.append(`<option value="${state}">${state}</option>`);
                         });
 
                         console.log(`✅ Updated ${stateSelector} for ${selectedCountry}`);
                     } else {
-                        console.warn(`❌ No states found for ${selectedCountry}`);
+                        console.warn(`❌ No states found or country not selected. Resetting ${stateSelector}.`);
                     }
 
-                    $(stateSelector).niceSelect("destroy");
-                    $(stateSelector).niceSelect();
+                    // ✅ Reinitialize niceSelect for visual update
+                    stateDropdown.niceSelect("destroy");
+                    stateDropdown.niceSelect();
                 });
             })
             .catch(error => console.error("❌ Error loading CSV:", error));
