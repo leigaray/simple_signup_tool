@@ -217,10 +217,11 @@ $(function () {
                 dropdown.append('<option value="" selected="selected"></option>');
 
                 rows.slice(1).forEach(row => {
-                    const match = row.match(/^"?(.*?)"?,?"?(.*?)"?$/);
+                    // ✅ Remove extra quotes and split by comma, handling quoted values
+                    const match = row.match(/^"?(\d+)"?,?"?(.*?)"?$/);
                     if (match) {
-                        const value = match[1];
-                        const label = match[2] || value; // Use value if label is missing
+                        const value = match[1].trim();
+                        const label = match[2].trim();
 
                         dropdown.append(`<option value="${value}">${label}</option>`);
                     } else {
@@ -236,6 +237,7 @@ $(function () {
             })
             .catch(error => console.error(`❌ Error loading ${csvUrl}:`, error));
     }
+
 
     populateDropdownFromCSV("select[name='education']", "data/education.csv");
     populateDropdownFromCSV("select[name='referral_source']", "data/referrals.csv");
