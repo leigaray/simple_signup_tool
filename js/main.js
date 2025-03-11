@@ -247,6 +247,8 @@ $(function () {
 
         // ✅ Call function to show/hide "Other" field for referral source
         toggleVisibility("otherReferralContainer", "referralSource", "Other");
+        toggleVisibility("otherEthnicityContainer", "ethnicityContainer", "Other");
+        toggleVisibility("otherLanguageContainer", "languageContainer", "Other");
 
         // ✅ Load dropdowns from CSV files
         populateDropdownFromCSV("select[name='education']", "data/education.csv");
