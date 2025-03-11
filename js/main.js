@@ -150,12 +150,14 @@ $(function () {
 
         loadCheckboxesFromCSV("#ethnicityContainer", "data/ethnicities.csv");
         loadCheckboxesFromCSV("#experienceContainer", "data/recording_experience.csv");
-        enforceExclusiveSelection("#ethnicityContainer", "ethnicity-8");
+
         setupCountryStateDropdown("select[name='native_country']", "#stateNativeSelect");
         setupCountryStateDropdown("select[name='current_country']", "#stateCurrentSelect");
         populateDropdownFromCSV("select[name='education']", "data/education.csv");
         populateDropdownFromCSV("select[name='referral_source']", "data/referrals.csv");
         populateDropdownFromCSV("select[name='language']", "data/languages.csv");
+
+        enforceExclusiveSelection("#ethnicityContainer", "ethnicity-8");
         console.log("✅ All functions initialized.");
     });
 });
