@@ -152,11 +152,20 @@
                                 <div class="col-sm-12">
                                     <div class="single-select">
                                         <label>How did you hear about this opportunity?</label>
-                                        <select name="referral_source" class="form-control required">
+                                        <select name="referral_source" id="referralSource" class="form-control required">
                                             <option value="" selected="selected">Loading...</option>
                                         </select>
                                     </div>
                                 </div>
+
+                                <!-- ✅ Hidden Text Field (Initially Hidden) -->
+                                <div class="col-sm-12" id="otherReferralContainer" style="display: none;">
+                                    <div class="single-input">
+                                        <label for="otherReferral">What is your ethnicity?</label>
+                                        <input type="text" id="otherReferral" name="other_referral" class="form-control">
+                                    </div>
+                                </div>
+
 
                             </div>
                             <div class="actions">

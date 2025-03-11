@@ -274,6 +274,19 @@ $(function () {
         console.log(`✅ ${selector} updated successfully.`);
     }
 
+    function toggleVisibility(targetId, triggerElementId, triggerValue) {
+        $(document).on("change", `#${triggerElementId}`, function () {
+            const selectedValue = $(this).val();
+            if (selectedValue === triggerValue) {
+                $(`#${targetId}`).fadeIn(); // ✅ Show if selected value matches
+            } else {
+                $(`#${targetId}`).fadeOut(); // ✅ Hide otherwise
+            }
+        });
+    }
+
+    // ✅ Call function for "Other" option in referral source dropdown
+    toggleVisibility("otherReferralContainer", "referralSource", "Other");
 
 
     populateYearDropdown("select[name='birth_year']", 1940, 2006, true);
