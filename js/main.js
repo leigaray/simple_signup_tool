@@ -202,10 +202,45 @@ $(function () {
             .catch(error => console.error("❌ Error loading Recording Experience CSV:", error));
     }
 
+    // ✅ Function to populate dropdown from CSV file
+    function populateDropdownFromCSV(selector, csvUrl) {
+        fetch(csvUrl)
+            .then(response => response.text())
+            .then(data => {
+                const rows = data.split("\n").map(row => row.trim()).filter(row => row);
+                console.log(`✅ First 5 rows from ${csvUrl}:`, rows.slice(0, 5));
+
+                const dropdown = $(selector);
+                dropdown.empty(); // Clear existing options
+
+                // Add default empty option
+                dropdown.append('<option value="" selected="selected"></option>');
+
+                rows.slice(1).forEach(row => {
+                    const match = row.match(/^"?(.*?)"?,?"?(.*?)"?$/);
+                    if (match) {
+                        const value = match[1];
+                        const label = match[2] || value; // Use value if label is missing
+
+                        dropdown.append(`<option value="${value}">${label}</option>`);
+                    } else {
+                        console.warn("⚠️ Skipping malformed row:", row);
+                    }
+                });
+
+                // ✅ Reinitialize niceSelect to refresh UI
+                dropdown.niceSelect("destroy");
+                dropdown.niceSelect();
+
+                console.log(`✅ ${selector} updated successfully.`);
+            })
+            .catch(error => console.error(`❌ Error loading ${csvUrl}:`, error));
+    }
+
+    populateDropdownFromCSV("select[name='education']", "data/education.csv");
+    populateDropdownFromCSV("select[name='referral_source']", "data/referrals.csv");
     // ✅ Load Recording Experience when the page is ready
     loadRecordingExperience();
-
-
     // ✅ Load Languages
     loadLanguages();
     // ✅ Load both ethnicity & state data
