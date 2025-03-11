@@ -253,7 +253,7 @@ $(function () {
 
     $(document).ready(function() {
         console.log("🚀 Document Ready - Initializing Birth Year Dropdown");
-        populateYearDropdown("#birthYearSelect", 1940, 2006, true);
+        populateYearDropdown("#birthYearSelect", 1990, 2006, true);
 
         // ✅ Load Ethnicities
         loadEthnicities();
