@@ -148,9 +148,102 @@ $(function () {
             .catch(error => console.error("❌ Error loading CSV:", error));
     }
 
+    // ✅ Function to load languages dynamically from CSV
+    function loadLanguages() {
+        console.log("🚀 loadLanguages() started");
+
+        fetch("https://leigaray.github.io/simple_signup_tool/data/languages.csv")
+            .then(response => response.text())
+            .then(data => {
+                console.log("✅ Languages CSV loaded successfully");
+
+                const rows = data.split("\n").map(row => row.trim()).filter(row => row);
+                console.log("📌 First 5 rows of Languages CSV:", rows.slice(0, 5));
+
+                const languageSelect = $("select[name='language']");
+                languageSelect.empty(); // Clear existing options
+
+                // Add default placeholder option
+                languageSelect.append('<option value="" selected="selected">Select a Language</option>');
+
+                let addedCount = 0;
+
+                rows.slice(1).forEach(row => {
+                    console.log("Processing row:", row); // Log each row
+
+                    const match = row.match(/^"(\d+)","(.*?)"$/);
+                    if (match) {
+                        const id = match[1];
+                        const language = match[2];
+                        console.log(`✅ Adding Language: ${language} (ID: ${id})`);
+
+                        languageSelect.append(`<option value="${language}">${language}</option>`);
+                        addedCount++;
+                    } else {
+                        console.warn("⚠️ Skipping malformed row:", row);
+                    }
+                });
+
+                console.log(`✅ Successfully added ${addedCount} languages.`);
+
+                // ✅ Ensure that the dropdown updates visually
+                languageSelect.niceSelect("destroy");
+                languageSelect.niceSelect();
+
+                console.log("✅ Final Language Dropdown HTML:", languageSelect.html());
+            })
+            .catch(error => console.error("❌ Error loading Languages CSV:", error));
+    }
+
+    // ✅ Function to load Ethnicities dynamically from CSV
+    function loadEthnicities() {
+        console.log("🚀 loadEthnicities() started");
+
+        fetch("https://leigaray.github.io/simple_signup_tool/data/ethnicities.csv")
+            .then(response => response.text())
+            .then(data => {
+                console.log("✅ Ethnicities CSV loaded successfully");
+
+                const rows = data.split("\n").map(row => row.trim()).filter(row => row);
+                console.log("📌 First 5 rows of Ethnicities CSV:", rows.slice(0, 5));
+
+                const ethnicityContainer = $("#ethnicityContainer");
+                ethnicityContainer.empty(); // Clear existing checkboxes
+
+                rows.slice(1).forEach(row => {
+                    const match = row.match(/^"(\d+)","(.*?)"$/);
+                    if (match) {
+                        const id = match[1];
+                        const ethnicity = match[2];
+
+                        // ✅ Create checkbox dynamically
+                        const checkboxHtml = `
+                            <div class="single-checkbox">
+                                <input type="checkbox" id="ethnicity-${id}" name="ethnicity[]" value="${ethnicity}" class="ethnicity-checkbox">
+                                <label for="ethnicity-${id}">${ethnicity}</label>
+                            </div>`;
+
+                        ethnicityContainer.append(checkboxHtml);
+                    } else {
+                        console.warn("⚠️ Skipping malformed row:", row);
+                    }
+                });
+
+                console.log("✅ Final Ethnicity Container:", ethnicityContainer.html());
+            })
+            .catch(error => console.error("❌ Error loading Ethnicities CSV:", error));
+    }
+
+
     $(document).ready(function() {
         console.log("🚀 Document Ready - Initializing Birth Year Dropdown");
         populateYearDropdown("#birthYearSelect", 1940, 2006, true);
+
+        // ✅ Load Ethnicities
+        loadEthnicities();
+
+        // ✅ Load Languages
+        loadLanguages();
 
         // ✅ Call function to show/hide "Other" field for referral source
         toggleVisibility("otherReferralContainer", "referralSource", "Other");
