@@ -675,7 +675,16 @@
             $(document).ready(function() {
                 $('#sidebar').load('components/sidebar.html');
                 $('#header').load('components/header.html');
-                $('#footer').load('components/footer.html');
+                $('#footer').load('components/footer.html', function() {
+                    console.log("✅ Footer loaded successfully");
+                });
+
+                // ✅ Ensure Next button event listener works after loading components
+                setTimeout(function() {
+                    $('.js-btn-next').on('click', function() {
+                        console.log("✅ Next button clicked!");
+                    });
+                }, 1000);
             });
         </script>
 
