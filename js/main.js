@@ -9,6 +9,7 @@ $(function () {
         console.log(`🚀 Populating ${selector} from ${startYear} to ${endYear}, Descending: ${descending}`);
 
         const dropdown = $(selector);
+
         if (!dropdown.length) {
             console.error(`❌ Dropdown ${selector} not found!`);
             return;
@@ -30,14 +31,15 @@ $(function () {
             dropdown.append(`<option value="${year}">${year}</option>`);
         });
 
-        // ✅ Refresh Nice Select UI
-        if (dropdown.hasClass('nice-select')) {
+        console.log(`✅ ${selector} updated successfully.`);
+
+        // ✅ Ensure Nice Select is refreshed
+        setTimeout(() => {
             dropdown.niceSelect("destroy");
             dropdown.niceSelect();
-        }
-
-        console.log(`✅ ${selector} updated successfully.`);
+        }, 500);
     }
+
 
     // ✅ Function to dynamically show/hide an input field based on a select option
     function toggleVisibility(targetId, triggerElementId, triggerValue) {
@@ -148,7 +150,40 @@ $(function () {
     }
 
     // ✅ Populate the birth year dropdown
-    populateYearDropdown("select[name='birth_year']", 1940, 2006, true);
+    function populateYearDropdown(selector, startYear, endYear, descending = true) {
+        console.log(`🚀 Populating ${selector} from ${startYear} to ${endYear}, Descending: ${descending}`);
+
+        const dropdown = $(selector);
+
+        if (!dropdown.length) {
+            console.error(`❌ Dropdown ${selector} not found!`);
+            return;
+        }
+
+        dropdown.empty(); // Clear existing options
+        dropdown.append('<option value="" selected="selected">Select Year</option>');
+
+        const years = [];
+        for (let year = startYear; year <= endYear; year++) {
+            years.push(year);
+        }
+
+        if (descending) {
+            years.reverse();
+        }
+
+        years.forEach(year => {
+            dropdown.append(`<option value="${year}">${year}</option>`);
+        });
+
+        console.log(`✅ ${selector} updated successfully.`);
+
+        // ✅ Ensure Nice Select is refreshed
+        setTimeout(() => {
+            dropdown.niceSelect("destroy");
+            dropdown.niceSelect();
+        }, 500);
+    }
 
     // ✅ Call function to show/hide "Other" field for referral source
     toggleVisibility("otherReferralContainer", "referralSource", "Other");
