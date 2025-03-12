@@ -4,6 +4,7 @@
             <strong>Personal Information</strong>
         </div>
     </div>
+
     <div class="row">
         <div class="col-sm-6">
             <div class="single-input">
@@ -20,8 +21,79 @@
                 <input type="email" name="email" class="form-control required" placeholder="Email Address *" required>
             </div>
         </div>
+
+        <!-- ✅ Gender Selection -->
+        <div class="col-sm-12">
+            <div class="single-input-radio">
+                <span>Gender</span>
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="single-radio">
+                            <input type="radio" id="male" name="gender" value="male">
+                            <label for="male">Male</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="single-radio">
+                            <input type="radio" id="female" name="gender" value="Female">
+                            <label for="female">Female</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="single-radio">
+                            <input type="radio" id="custom" name="gender" value="Custom">
+                            <label for="custom">Non-Binary</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ✅ Birth Year -->
+        <div class="col-sm-12">
+            <div class="single-select">
+                <label>Birth Year</label>
+                <select name="birth_year" id="birthYearSelect" class="form-control required">
+                    <option value="" selected="selected">Loading...</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- ✅ Education -->
+        <div class="col-sm-12">
+            <div class="single-select">
+                <label>Education</label>
+                <select name="education" class="form-control required">
+                    <option value="" selected="selected">Loading...</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- ✅ Referral Source -->
+        <div class="col-sm-12">
+            <div class="single-select">
+                <label>How did you hear about this opportunity?</label>
+                <select name="referral_source" id="referralSource" class="form-control required">
+                    <option value="" selected="selected">Loading...</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- ✅ Hidden Text Field for "Other" Referral -->
+        <div class="col-sm-12" id="otherReferralContainer" style="display: none;">
+            <div class="single-input">
+                <label for="otherReferral">Please type how you heard about this opportunity</label>
+                <input type="text" id="otherReferral" name="other_referral" class="form-control">
+            </div>
+        </div>
     </div>
 
-    <!-- Load Navigation Buttons -->
-    <div id="navigationContainer"></div>
+    <!-- ✅ Navigation Buttons -->
+    <div class="actions">
+        <ul>
+            <li>
+                <span class="js-btn-next" title="NEXT">NEXT <i class="bi bi-arrow-right"></i></span>
+            </li>
+        </ul>
+    </div>
 </div>
