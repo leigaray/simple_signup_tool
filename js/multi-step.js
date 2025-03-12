@@ -1,210 +1,98 @@
 $(function() {
+    console.log("🚀 Multi-step form initialized");
 
-    //multi form ===================================
-    //DOM elements
-    const DOMstrings = {
-        stepsBtnClass: 'bforum-form__progress-btn',
-        stepsBtns: document.querySelectorAll(`.bforum-form__progress-btn`),
-        stepsBar: document.querySelector('.bforum-form__progress'),
-        stepsForm: document.querySelector('.multisteps-form__form'),
-        stepFormPanelClass: 'multisteps-form__panel',
-        stepFormPanels: document.querySelectorAll('.multisteps-form__panel'),
-        stepPrevBtnClass: 'js-btn-prev',
-        stepNextBtnClass: 'js-btn-next'
-    };
-    //remove class from a set of items
-    const removeClasses = (elemSet, className) => {
+    // Track current step index
+    let currentStepIndex = 0;
 
-        elemSet.forEach(elem => {
+    // Store step files (modify if filenames differ)
+    const steps = [
+        "steps/step1-personal-info.html",
+        "steps/step2-birth-location.html",
+        "steps/step3-ethnicity-language.html",
+        "steps/step4-voice-experience.html",
+        "steps/step5-voice-samples.html"
+    ];
 
-            elem.classList.remove(className);
+    // Function to load a specific step dynamically
+    function loadStep(stepIndex) {
+        if (stepIndex < 0 || stepIndex >= steps.length) return;
 
-        });
+        console.log(`🔄 Loading Step ${stepIndex + 1}: ${steps[stepIndex]}`);
 
-    };
+        $("#formStepsContainer").load(steps[stepIndex], function(response, status, xhr) {
+            if (status === "error") {
+                console.error("❌ Error loading step:", xhr.status, xhr.statusText);
+            } else {
+                console.log(`✅ Step ${stepIndex + 1} loaded successfully.`);
+                currentStepIndex = stepIndex;
 
-    //return exect parent node of the element
-    const findParent = (elem, parentClass) => {
+                // Load navigation buttons inside the step
+                $("#navigationContainer").load("components/form-navigation.html", function(response, status, xhr) {
+                    if (status === "error") {
+                        console.error("❌ Error loading navigation:", xhr.status, xhr.statusText);
+                    } else {
+                        console.log("✅ Navigation loaded.");
+                    }
+                });
 
-        let currentNode = elem;
-
-        while (!currentNode.classList.contains(parentClass)) {
-            currentNode = currentNode.parentNode;
-        }
-
-        return currentNode;
-
-    };
-
-    //get active button step number
-    const getActiveStep = elem => {
-        return Array.from(DOMstrings.stepsBtns).indexOf(elem);
-    };
-
-    //set all steps before clicked (and clicked too) to active
-    const setActiveStep = activeStepNum => {
-
-        //remove active state from all the state
-        removeClasses(DOMstrings.stepsBtns, 'js-active');
-        removeClasses(DOMstrings.stepsBtns, 'current');
-
-        //set picked items to active
-        DOMstrings.stepsBtns.forEach((elem, index) => {
-            if (index <= activeStepNum) {
-                elem.classList.add('js-active');
-                $(elem).addClass(index);
-
-            }
-
-            if (index == activeStepNum) {
-                elem.classList.add('current');
-            }
-
-
-        });
-    };
-
-    //get active panel
-    const getActivePanel = () => {
-
-        let activePanel;
-
-        DOMstrings.stepFormPanels.forEach(elem => {
-
-            if (elem.classList.contains('js-active')) {
-
-                activePanel = elem;
-
-            }
-
-        });
-
-        return activePanel;
-
-    };
-
-    //open active panel (and close unactive panels)
-    const setActivePanel = activePanelNum => {
-
-        const animation = $(DOMstrings.stepFormPanels, 'js-active').attr("data-animation");
-
-        //remove active class from all the panels
-        removeClasses(DOMstrings.stepFormPanels, 'js-active');
-        removeClasses(DOMstrings.stepFormPanels, animation);
-        removeClasses(DOMstrings.stepFormPanels, 'animate__animated');
-
-        //show active panel
-        DOMstrings.stepFormPanels.forEach((elem, index) => {
-            if (index === activePanelNum) {
-
-                elem.classList.add('js-active');
-                // stepFormPanels
-                elem.classList.add('animate__animated', animation);
-
-                setTimeout(function() {
-                    removeClasses(DOMstrings.stepFormPanels, 'animate__animated', animation);
-                }, 1200);
-
-                setFormHeight(elem);
-
+                // Re-initialize multi-step logic
+                initializeMultiStepLogic();
             }
         });
-
-    };
-
-
-    //set form height equal to current panel height
-    const formHeight = activePanel => {
-
-        const activePanelHeight = activePanel.offsetHeight;
-
-        DOMstrings.stepsForm.style.height = `${activePanelHeight}px`;
-
-    };
-
-    const setFormHeight = () => {
-        const activePanel = getActivePanel();
-
-        formHeight(activePanel);
-    };
-
-    //STEPS BAR CLICK FUNCTION
-    DOMstrings.stepsBar.addEventListener('click', e => {
-
-        //check if click target is a step button
-        const eventTarget = e.target;
-
-        if (!eventTarget.classList.contains(`${DOMstrings.stepsBtnClass}`)) {
-            return;
-        }
-
-        //get active button step number
-        const activeStep = getActiveStep(eventTarget);
-
-        //set all steps before clicked (and clicked too) to active
-        // setActiveStep(activeStep);
-
-        //open active panel
-        // setActivePanel(activeStep);
-    });
-
-    //PREV/NEXT BTNS CLICK
-    DOMstrings.stepsForm.addEventListener('click', e => {
-
-        const eventTarget = e.target;
-
-        //check if we clicked on `PREV` or NEXT` buttons
-        if (!(eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`) || eventTarget.classList.contains(`${DOMstrings.stepNextBtnClass}`))) {
-            return;
-        }
-
-        //find active panel
-        const activePanel = findParent(eventTarget, `${DOMstrings.stepFormPanelClass}`);
-
-        let activePanelNum = Array.from(DOMstrings.stepFormPanels).indexOf(activePanel);
-
-
-        //set active step and active panel onclick
-        if (eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`) ) {
-            activePanelNum--;
-
-            setActiveStep(activePanelNum);
-            setActivePanel(activePanelNum);
-
-        } else if(eventTarget.classList.contains(`${DOMstrings.stepNextBtnClass}`)  ) {
-
-         var form = $('#wizard');
-         form.validate();
-
-
-         var parent_fieldset = $('.multisteps-form__panel.js-active');
-         var next_step = true;
-
-         parent_fieldset.find('.required').each( function(){
-            next_step = false;
-            var form = $('.required');
-            form.validate();
-            $(this).addClass('custom-select is-invalid-field');
-        });
-
-         if(next_step === true || form.valid() === true) {
-            $("html, body").animate({
-                scrollTop: 0
-            }, 600);
-            activePanelNum++;
-            setActiveStep(activePanelNum);
-            setActivePanel(activePanelNum);
-        }
-
-
     }
 
+    // Function to initialize the step form logic
+    function initializeMultiStepLogic() {
+        console.log("🔄 Reinitializing Multi-Step Logic...");
 
+        const DOMstrings = {
+            stepsBtnClass: 'bforum-form__progress-btn',
+            stepsBtns: document.querySelectorAll(`.bforum-form__progress-btn`),
+            stepsBar: document.querySelector('.bforum-form__progress'),
+            stepsForm: document.querySelector('.multisteps-form__form'),
+            stepFormPanelClass: 'multisteps-form__panel',
+            stepFormPanels: document.querySelectorAll('.multisteps-form__panel'),
+            stepPrevBtnClass: 'js-btn-prev',
+            stepNextBtnClass: 'js-btn-next'
+        };
+
+        if (!DOMstrings.stepsForm) {
+            console.warn("⚠️ Form not found yet, skipping re-init.");
+            return;
+        }
+
+        // Update progress bar
+        updateProgressBar(currentStepIndex);
+
+        // Attach button handlers
+        $(document).off("click", ".js-btn-next").on("click", ".js-btn-next", function() {
+            if (currentStepIndex < steps.length - 1) {
+                loadStep(currentStepIndex + 1);
+            }
+        });
+
+        $(document).off("click", ".js-btn-prev").on("click", ".js-btn-prev", function() {
+            if (currentStepIndex > 0) {
+                loadStep(currentStepIndex - 1);
+            }
+        });
+
+        console.log("✅ Multi-step logic reinitialized.");
+    }
+
+    // Function to update progress bar
+    function updateProgressBar(activeStepIndex) {
+        $(".bforum-form__progress-btn").removeClass("js-active current");
+        $(".bforum-form__progress-btn").each(function(index) {
+            if (index <= activeStepIndex) {
+                $(this).addClass("js-active");
+            }
+            if (index === activeStepIndex) {
+                $(this).addClass("current");
+            }
+        });
+    }
+
+    // Load the first step initially
+    loadStep(0);
 });
-
-    //SETTING PROPER FORM HEIGHT ONLOAD
-    window.addEventListener('load', setFormHeight, true);
-
-    //SETTING PROPER FORM HEIGHT ONRESIZE
-    window.addEventListener('resize', setFormHeight, true);
-})
