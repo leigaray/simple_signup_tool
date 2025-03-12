@@ -173,6 +173,29 @@ $(function () {
         });
     }
 
+
+    function toggleCheckboxVisibility(targetId, checkboxId) {
+        $(document).on("change", `#${checkboxId}`, function () {
+            console.log(`🔄 ${checkboxId} changed, checked: ${$(this).is(":checked")}`);
+
+            if ($(this).is(":checked")) {
+                $(`#${targetId}`).fadeIn();
+            } else {
+                $(`#${targetId}`).fadeOut();
+            }
+        });
+
+        // ✅ Ensure correct visibility on page load
+        setTimeout(() => {
+            if ($(`#${checkboxId}`).is(":checked")) {
+                $(`#${targetId}`).show();
+            } else {
+                $(`#${targetId}`).hide();
+            }
+        }, 500);
+    }
+
+
     /**
      * ✅ Initialize All Functions on Document Ready
      */
@@ -191,6 +214,9 @@ $(function () {
         toggleVisibility("otherLanguageContainer", "languageSelect", "Other");
         toggleVisibility("ethnicityContainer", "otherEthnicityContainer", "Other");
         toggleVisibility("microphoneTypeContainer", "recording_microphone", "Yes");
+
+        // ✅ Add toggle functionality for "Other" experience
+        toggleCheckboxVisibility("otherExperienceContainer", "experience-16");
 
 
         setupCountryStateDropdown("select[name='native_country']", "#stateNativeSelect");
