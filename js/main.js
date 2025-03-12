@@ -208,6 +208,15 @@ $(function () {
                 updateLastModified(); // Ensure last updated time works
             }
         });
+
+        $("#progressContainer").load("progress.html", function(response, status, xhr) {
+            if (status === "error") {
+                console.error("❌ Error loading progress bar:", xhr.status, xhr.statusText);
+            } else {
+                console.log("✅ Progress bar loaded successfully.");
+            }
+        });
+
         console.log("🚀 Initializing checkboxes from CSV...");
         // ✅ Load Ethnicity and Experience Checkboxes
         loadCheckboxesFromCSV("#ethnicityContainer", "data/ethnicities.csv", "ethnicity");
