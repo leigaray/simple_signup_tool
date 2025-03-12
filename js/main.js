@@ -197,7 +197,9 @@ $(function () {
         populateDropdownFromCSV("select[name='education']", "data/education.csv");
         populateDropdownFromCSV("select[name='referral_source']", "data/referrals.csv");
         populateDropdownFromCSV("select[name='language']", "data/languages.csv");
+
         enforceExclusiveSelection("#ethnicityContainer", "ethnicity-8");
+        enforceExclusiveSelection("#experienceContainer", "experience-0");
         console.log("✅ All functions initialized.");
     });
 });
