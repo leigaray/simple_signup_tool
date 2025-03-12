@@ -209,7 +209,7 @@ $(function () {
             }
         });
 
-        $("#progressContainer").load("progress.html", function(response, status, xhr) {
+        $("#progressContainer").load("components/progress.html", function(response, status, xhr) {
             if (status === "error") {
                 console.error("❌ Error loading progress bar:", xhr.status, xhr.statusText);
             } else {
