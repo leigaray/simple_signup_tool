@@ -1,0 +1,53 @@
+<div class="multisteps-form__panel" data-animation="slideHorz">
+    <div class="row">
+        <div class="from-header-info">
+            <span class="maintitle">Tell us about your ethnicity and language spoken:</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="from-header-info">
+            <strong>What is your ethnicity?</strong>
+        </div>
+    </div>
+
+    <!-- ✅ Dynamically generated checkboxes will be inserted here -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="single-input-checkbox">
+                <p class="toplabel">Select all that apply:</p>
+                <div id="ethnicityContainer"></div> <!-- ✅ JavaScript will populate checkboxes here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ Hidden Text Field (Initially Hidden) -->
+    <div class="col-sm-12" id="otherEthnicityContainer" style="display: none;">
+        <div class="single-input">
+            <label for="otherEthnicity">What is your Ethnicity?</label>
+            <input type="text" id="otherEthnicity" name="other_ethnicity" class="form-control">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="single-select">
+                <label>What is your primary language?</label>
+                <select name="language" id="languageSelect" class="form-control required">
+                    <option value="" selected="selected">Loading languages...</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ Hidden Text Field (Initially Hidden) -->
+    <div class="col-sm-12" id="otherLanguageContainer" style="display: none;">
+        <div class="single-input">
+            <label for="otherLanguage">Other language</label>
+            <input type="text" id="otherLanguage" name="other_language" class="form-control">
+        </div>
+    </div>
+
+
+    <!-- Load Navigation Buttons -->
+    <div id="navigationContainer"></div>
+</div>
