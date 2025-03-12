@@ -1,0 +1,71 @@
+<div class="multisteps-form__panel" data-animation="slideHorz">
+
+    <div class="row">
+        <div class="from-header-info">
+            <span class="maintitle">Tell us your voice acting experience:</span>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="single-select">
+                <label>Do you have a home recording studio? </label>
+                <select name="recording_studio" style="display: none;">
+                    <option value="" selected="selected"></option>
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select>
+                <div class="nice-select" tabindex="0"><span class="current"></span>
+                    <ul class="list">
+                        <li data-value="" class="option selected"></li>
+                        <li data-value="No" class="option">No</li>
+                        <li data-value="Yes" class="option">Yes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="single-select">
+                <label>Do you have a professional recording microphone?</label>
+                <select name="recording_microphone" id="recording_microphone" class="form-control required">
+                    <option value="" selected="selected"></option>
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- ✅ Hidden Text Field (Initially Hidden) -->
+        <div class="col-sm-12" id="microphoneTypeContainer" style="display: none;">
+            <div class="single-input">
+                <label for="microphoneType">What professional microphone will you be using for this recording? Be as specific as possible (brand, model, etc.)</label>
+                <input type="text" id="microphoneType" name="microphone_type" class="form-control">
+            </div>
+        </div>
+
+
+        <div class="col-lg-12">
+            <div class="single-input-checkbox">
+                <p class="toplabel">
+                    Select all options below that apply to your previous experience as a voice actor:
+                </p>
+                <div class="row" id="experienceContainer">
+                    <!-- ✅ JavaScript will populate checkboxes dynamically here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ✅ Hidden Text Field (Initially Hidden) -->
+        <div class="col-sm-12" id="otherExperienceContainer" style="display: none;">
+            <div class="single-input">
+                <label for="otherExperience">Please describe your other experience</label>
+                <input type="text" id="otherExperience" name="other_experience" class="form-control">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Load Navigation Buttons -->
+    <div id="navigationContainer"></div>s
+</div>
