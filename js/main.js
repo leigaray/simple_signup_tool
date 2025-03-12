@@ -207,6 +207,16 @@ $(function () {
     });
 
     $(document).ready(function () {
+
+        $("#sidebarContainer").load("components/sidebar.html", function(response, status, xhr) {
+            if (status === "error") {
+                console.error("❌ Error loading sidebar:", xhr.status, xhr.statusText);
+            } else {
+                console.log("✅ Sidebar loaded successfully.");
+                updateLastModified(); // Ensure last updated time works
+            }
+        });
+
         updateLastModified();
         populateYearDropdown("#birthYearSelect", 1990, 2006, true);
         toggleVisibility("otherReferralContainer", "referralSource", "Other");
