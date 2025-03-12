@@ -192,6 +192,7 @@ $(function () {
         toggleVisibility("ethnicityContainer", "otherEthnicityContainer", "Other");
         toggleVisibility("microphoneTypeContainer", "recording_microphone", "Yes");
 
+
         setupCountryStateDropdown("select[name='native_country']", "#stateNativeSelect");
         setupCountryStateDropdown("select[name='current_country']", "#stateCurrentSelect");
         populateDropdownFromCSV("select[name='education']", "data/education.csv");
