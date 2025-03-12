@@ -190,7 +190,8 @@ $(function () {
         toggleVisibility("otherReferralContainer", "referralSource", "Other");
         toggleVisibility("otherLanguageContainer", "languageSelect", "Other");
         toggleVisibility("ethnicityContainer", "otherEthnicityContainer", "Other");
-        toggleVisibility("recording_microphone", "microphoneTypeContainer", "Yes");
+        toggleVisibility("microphoneTypeContainer", "recording_microphone", "Yes");
+
         setupCountryStateDropdown("select[name='native_country']", "#stateNativeSelect");
         setupCountryStateDropdown("select[name='current_country']", "#stateCurrentSelect");
         populateDropdownFromCSV("select[name='education']", "data/education.csv");
