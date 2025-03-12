@@ -189,6 +189,7 @@ $(function () {
         populateYearDropdown("#birthYearSelect", 1990, 2006, true);
         toggleVisibility("otherReferralContainer", "referralSource", "Other");
         toggleVisibility("otherLanguageContainer", "languageSelect", "Other");
+        toggleVisibility("ethnicityContainer", "otherEthnicityContainer", "Other");
         setupCountryStateDropdown("select[name='native_country']", "#stateNativeSelect");
         setupCountryStateDropdown("select[name='current_country']", "#stateCurrentSelect");
         populateDropdownFromCSV("select[name='education']", "data/education.csv");
