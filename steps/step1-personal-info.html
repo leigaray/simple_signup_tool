@@ -1,29 +1,30 @@
 <div class="multisteps-form__panel js-active" data-animation="slideHorz">
-
     <div class="row">
         <div class="from-header-info">
-            <strong>Personal Information <3<3<3</strong>
+            <strong>Personal Information</strong>
         </div>
     </div>
-
     <div class="row">
+
+
         <div class="col-sm-6">
             <div class="single-input">
-                <input type="text" name="first_name" class="form-control required" minlength="2" placeholder="First Name *" required>
+                <input type="text" name="first_name" class="form-control required" minlength="2"
+                       placeholder="First Name *" required="">
             </div>
         </div>
         <div class="col-sm-6">
             <div class="single-input">
-                <input type="text" name="last_name" class="form-control required" minlength="3" placeholder="Last Name *" required>
+                <input type="text" name="last_name" class="form-control required" minlength="3"
+                       placeholder="Last Name *" required="">
             </div>
         </div>
         <div class="col-sm-12">
             <div class="single-input">
-                <input type="email" name="email" class="form-control required" placeholder="Email Address *" required>
+                <input type="email" name="email" class="form-control required"
+                       placeholder="Email Address *" required="">
             </div>
         </div>
-
-        <!-- ✅ Gender Selection -->
         <div class="col-sm-12">
             <div class="single-input-radio">
                 <span>Gender</span>
@@ -49,8 +50,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- ✅ Birth Year -->
         <div class="col-sm-12">
             <div class="single-select">
                 <label>Birth Year</label>
@@ -60,17 +59,19 @@
             </div>
         </div>
 
-        <!-- ✅ Education -->
         <div class="col-sm-12">
-            <div class="single-select">
-                <label>Education</label>
-                <select name="education" class="form-control required">
-                    <option value="" selected="selected">Loading...</option>
-                </select>
+
+            <div class="col-sm-12">
+                <div class="single-select">
+                    <label>Education</label>
+                    <select name="education" class="form-control required">
+                        <option value="" selected="selected">Loading...</option>
+                    </select>
+                </div>
             </div>
+
         </div>
 
-        <!-- ✅ Referral Source -->
         <div class="col-sm-12">
             <div class="single-select">
                 <label>How did you hear about this opportunity?</label>
@@ -80,7 +81,7 @@
             </div>
         </div>
 
-        <!-- ✅ Hidden Text Field for "Other" Referral -->
+        <!-- ✅ Hidden Text Field (Initially Hidden) -->
         <div class="col-sm-12" id="otherReferralContainer" style="display: none;">
             <div class="single-input">
                 <label for="otherReferral">Please type how you heard about this opportunity</label>
@@ -89,11 +90,11 @@
         </div>
     </div>
 
-    <!-- ✅ Navigation Buttons -->
     <div class="actions">
         <ul>
-            <li>
-                <span class="js-btn-next" title="NEXT">NEXT <i class="bi bi-arrow-right"></i></span>
+            <li class="disable" aria-disabled="true"><span class="js-btn-next" title="back"><i
+                    class="bi bi-arrow-left"></i> Back </span></li>
+            <li><span class="js-btn-next" title="NEXT">NEXT <i class="bi bi-arrow-right"></i></span>
             </li>
         </ul>
     </div>
