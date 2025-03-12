@@ -17,7 +17,7 @@ $(function () {
     });
 
     /**
-     * ✅ Load Progress Bar & Initialize Multi-Step Form
+     * ✅ Load Progress Bar & Multi-Step Form
      */
     $("#progressContainer").load("components/progress.html", function(response, status, xhr) {
         if (status === "error") {
@@ -27,8 +27,7 @@ $(function () {
 
             // ✅ Load Multi-Step Form JS After Progress Bar Loads
             $.getScript("js/multi-step.js", function() {
-                console.log("✅ Multi-Step JS Initialized After Progress Bar Load");
-                initializeMultiStepForm(); // Call the function to load steps dynamically
+                console.log("✅ Multi-Step JS Initialized");
             });
         }
     });
@@ -81,63 +80,6 @@ $(function () {
                 $(`#${targetId}`).hide();
             }
         }, 500);
-    }
-
-    /**
-     * ✅ Initialize Multi-Step Form
-     */
-    function initializeMultiStepForm() {
-        console.log("🚀 Loading multi-step form...");
-
-        // Step files in order
-        const steps = [
-            "steps/step1-personal-info.html",
-            "steps/step2-birth-location.html",
-            "steps/step3-ethnicity-language.html",
-            "steps/step4-voice-experience.html",
-            "steps/step5-voice-samples.html"
-        ];
-
-        let currentStepIndex = 0; // Track current step
-
-        // Function to load a specific step
-        function loadStep(stepIndex) {
-            if (stepIndex < 0 || stepIndex >= steps.length) return; // Prevent invalid index
-
-            console.log(`🔄 Loading Step ${stepIndex + 1}: ${steps[stepIndex]}`);
-
-            $("#formStepsContainer").load(steps[stepIndex], function (response, status, xhr) {
-                if (status === "error") {
-                    console.error("❌ Error loading step:", xhr.status, xhr.statusText);
-                } else {
-                    console.log(`✅ Step ${stepIndex + 1} loaded successfully.`);
-                    currentStepIndex = stepIndex; // Update current step index
-
-                    // Load Navigation Buttons inside each step
-                    $("#navigationContainer").load("components/form-navigation.html", function (response, status, xhr) {
-                        if (status === "error") {
-                            console.error("❌ Error loading navigation:", xhr.status, xhr.statusText);
-                        }
-                    });
-                }
-            });
-        }
-
-        // Load first step initially
-        loadStep(0);
-
-        // Handle Next/Back button clicks
-        $(document).on("click", ".js-btn-next", function () {
-            if (currentStepIndex < steps.length - 1) {
-                loadStep(currentStepIndex + 1); // Go to next step
-            }
-        });
-
-        $(document).on("click", ".js-btn-prev", function () {
-            if (currentStepIndex > 0) {
-                loadStep(currentStepIndex - 1); // Go to previous step
-            }
-        });
     }
 
     /**
