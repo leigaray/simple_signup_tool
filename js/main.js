@@ -199,14 +199,6 @@ $(function () {
      * ✅ Initialize All Functions on Document Ready
      */
     $(document).ready(function () {
-        console.log("🚀 Initializing checkboxes from CSV...");
-        // ✅ Load Ethnicity and Experience Checkboxes
-        loadCheckboxesFromCSV("#ethnicityContainer", "data/ethnicities.csv", "ethnicity");
-        loadCheckboxesFromCSV("#experienceContainer", "data/recording_experience.csv", "experience");
-        console.log("✅ Checkboxes loaded.");
-    });
-
-    $(document).ready(function () {
 
         $("#sidebarContainer").load("components/sidebar.html", function(response, status, xhr) {
             if (status === "error") {
@@ -216,6 +208,16 @@ $(function () {
                 updateLastModified(); // Ensure last updated time works
             }
         });
+        console.log("🚀 Initializing checkboxes from CSV...");
+        // ✅ Load Ethnicity and Experience Checkboxes
+        loadCheckboxesFromCSV("#ethnicityContainer", "data/ethnicities.csv", "ethnicity");
+        loadCheckboxesFromCSV("#experienceContainer", "data/recording_experience.csv", "experience");
+        console.log("✅ Checkboxes loaded.");
+    });
+
+    $(document).ready(function () {
+
+
 
         updateLastModified();
         populateYearDropdown("#birthYearSelect", 1990, 2006, true);
