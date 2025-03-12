@@ -159,7 +159,6 @@ $(function () {
             .catch(error => console.error(`❌ Error loading ${csvUrl}:`, error));
     }
 
-
     /**
      * ✅ Mutually Exclusive Selection (Checkboxes)
      */
