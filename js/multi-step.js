@@ -1,4 +1,9 @@
-$(function() {
+
+// Make these functions globally accessible so multi-step.js can call them
+window.populateYearDropdown = populateYearDropdown;
+window.populateDropdownFromCSV = populateDropdownFromCSV;
+
+$(function () {
     console.log("🚀 Multi-step form initialized");
 
     // Track current step index
@@ -14,12 +19,13 @@ $(function() {
     ];
 
     // Function to load a specific step dynamically
+    // Function to load a specific step dynamically
     function loadStep(stepIndex) {
         if (stepIndex < 0 || stepIndex >= steps.length) return;
 
         console.log(`🔄 Loading Step ${stepIndex + 1}: ${steps[stepIndex]}`);
 
-        $("#formStepsContainer").load(steps[stepIndex], function(response, status, xhr) {
+        $("#formStepsContainer").load(steps[stepIndex], function (response, status, xhr) {
             if (status === "error") {
                 console.error("❌ Error loading step:", xhr.status, xhr.statusText);
             } else {
@@ -27,10 +33,10 @@ $(function() {
                 currentStepIndex = stepIndex;
 
                 // ✅ Debugging: Check if Step 1 elements exist
-                console.log("Step 1 Exists?", $("#birthYearSelect").length > 0);
+                console.log(`Step ${stepIndex + 1} Exists?`, $("#birthYearSelect").length > 0);
 
                 // Load navigation buttons inside the step
-                $("#navigationContainer").load("components/form-navigation.html", function(response, status, xhr) {
+                $("#navigationContainer").load("components/form-navigation.html", function (response, status, xhr) {
                     if (status === "error") {
                         console.error("❌ Error loading navigation:", xhr.status, xhr.statusText);
                     } else {
@@ -38,13 +44,22 @@ $(function() {
                     }
                 });
 
-                // ✅ Populate dropdowns only for Step 1
+                // ✅ Populate dropdowns only for Step 1 (Ensure functions exist)
                 if (stepIndex === 0) {
                     console.log("📥 Populating dropdowns for Step 1...");
                     setTimeout(() => {
-                        populateYearDropdown("#birthYearSelect", 1990, 2006, true);
-                        populateDropdownFromCSV("select[name='education']", "data/education.csv");
-                        populateDropdownFromCSV("select[name='referral_source']", "data/referrals.csv");
+                        if (typeof window.populateYearDropdown === "function") {
+                            window.populateYearDropdown("#birthYearSelect", 1990, 2006, true);
+                        } else {
+                            console.error("❌ populateYearDropdown is not available!");
+                        }
+
+                        if (typeof window.populateDropdownFromCSV === "function") {
+                            window.populateDropdownFromCSV("select[name='education']", "data/education.csv");
+                            window.populateDropdownFromCSV("select[name='referral_source']", "data/referrals.csv");
+                        } else {
+                            console.error("❌ populateDropdownFromCSV is not available!");
+                        }
                     }, 500); // Small delay ensures elements exist
                 }
 
@@ -53,7 +68,6 @@ $(function() {
             }
         });
     }
-
 
     // Function to initialize the step form logic
     function initializeMultiStepLogic() {
@@ -79,13 +93,13 @@ $(function() {
         updateProgressBar(currentStepIndex);
 
         // Attach button handlers
-        $(document).off("click", ".js-btn-next").on("click", ".js-btn-next", function() {
+        $(document).off("click", ".js-btn-next").on("click", ".js-btn-next", function () {
             if (currentStepIndex < steps.length - 1) {
                 loadStep(currentStepIndex + 1);
             }
         });
 
-        $(document).off("click", ".js-btn-prev").on("click", ".js-btn-prev", function() {
+        $(document).off("click", ".js-btn-prev").on("click", ".js-btn-prev", function () {
             if (currentStepIndex > 0) {
                 loadStep(currentStepIndex - 1);
             }
@@ -97,7 +111,7 @@ $(function() {
     // Function to update progress bar
     function updateProgressBar(activeStepIndex) {
         $(".bforum-form__progress-btn").removeClass("js-active current");
-        $(".bforum-form__progress-btn").each(function(index) {
+        $(".bforum-form__progress-btn").each(function (index) {
             if (index <= activeStepIndex) {
                 $(this).addClass("js-active");
             }
