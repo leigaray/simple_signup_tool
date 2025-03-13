@@ -26,6 +26,9 @@ $(function() {
                 console.log(`✅ Step ${stepIndex + 1} loaded successfully.`);
                 currentStepIndex = stepIndex;
 
+                // ✅ Debugging: Check if Step 1 elements exist
+                console.log("Step 1 Exists?", $("#birthYearSelect").length > 0);
+
                 // Load navigation buttons inside the step
                 $("#navigationContainer").load("components/form-navigation.html", function(response, status, xhr) {
                     if (status === "error") {
@@ -35,11 +38,22 @@ $(function() {
                     }
                 });
 
-                // Re-initialize multi-step logic
+                // ✅ Populate dropdowns only for Step 1
+                if (stepIndex === 0) {
+                    console.log("📥 Populating dropdowns for Step 1...");
+                    setTimeout(() => {
+                        populateYearDropdown("#birthYearSelect", 1990, 2006, true);
+                        populateDropdownFromCSV("select[name='education']", "data/education.csv");
+                        populateDropdownFromCSV("select[name='referral_source']", "data/referrals.csv");
+                    }, 500); // Small delay ensures elements exist
+                }
+
+                // Reinitialize multi-step logic
                 initializeMultiStepLogic();
             }
         });
     }
+
 
     // Function to initialize the step form logic
     function initializeMultiStepLogic() {

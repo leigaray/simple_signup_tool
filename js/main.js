@@ -41,13 +41,18 @@ $(function () {
     }
 
     function populateYearDropdown(selector, startYear, endYear, descending = true) {
-        const dropdown = $(selector);
-        if (!dropdown.length) return console.error(`❌ Dropdown ${selector} not found!`);
-        dropdown.empty().append('<option value="" selected="selected">Select Year</option>');
-        const years = Array.from({length: endYear - startYear + 1}, (_, i) => startYear + i);
-        if (descending) years.reverse();
-        years.forEach(year => dropdown.append(`<option value="${year}">${year}</option>`));
-        setTimeout(() => dropdown.niceSelect("destroy").niceSelect(), 500);
+        setTimeout(() => { // Add slight delay to ensure element exists
+            const dropdown = $(selector);
+            if (!dropdown.length) {
+                console.warn(`⚠️ Dropdown ${selector} not found yet, retrying...`);
+                return;
+            }
+            dropdown.empty().append('<option value="" selected="selected">Select Year</option>');
+            const years = Array.from({ length: endYear - startYear + 1 }, (_, i) => startYear + i);
+            if (descending) years.reverse();
+            years.forEach(year => dropdown.append(`<option value="${year}">${year}</option>`));
+            setTimeout(() => dropdown.niceSelect("destroy").niceSelect(), 500);
+        }, 500); // Small delay ensures dropdown exists
     }
 
     /**
